@@ -101,4 +101,20 @@ export const TECH_STACK: TechStack[] = [
     categories: ["Tools", "AI"],
     theme: true,
   },
+  {
+    key: "claude",
+    title: "Claude",
+    href: "https://claude.ai/",
+    categories: ["Tools", "AI"],
+    theme: true,
+    iconBaseUrl: "/assets/tech-stack-icons",
+  },
+  {
+    key: "aws",
+    title: "AWS",
+    href: "https://aws.amazon.com/",
+    categories: ["Tools", "Cloud"],
+    theme: true,
+    iconBaseUrl: "/assets/tech-stack-icons",
+  },
 ]

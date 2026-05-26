@@ -19,6 +19,7 @@ export function TechStack() {
       <PanelContent>
         <ul className="flex flex-wrap gap-4 select-none">
           {TECH_STACK.map((tech) => {
+            const base = tech.iconBaseUrl ?? "https://assets.chanhdai.com/images/tech-stack-icons"
             return (
               <li key={tech.key} className="flex">
                 <Tooltip>
@@ -33,7 +34,7 @@ export function TechStack() {
                         {tech.theme ? (
                           <>
                             <Image
-                              src={`https://assets.chanhdai.com/images/tech-stack-icons/${tech.key}-light.svg`}
+                              src={`${base}/${tech.key}-light.svg`}
                               alt={`${tech.title} light icon`}
                               width={32}
                               height={32}
@@ -41,7 +42,7 @@ export function TechStack() {
                               unoptimized
                             />
                             <Image
-                              src={`https://assets.chanhdai.com/images/tech-stack-icons/${tech.key}-dark.svg`}
+                              src={`${base}/${tech.key}-dark.svg`}
                               alt={`${tech.title} dark icon`}
                               width={32}
                               height={32}
@@ -51,7 +52,7 @@ export function TechStack() {
                           </>
                         ) : (
                           <Image
-                            src={`https://assets.chanhdai.com/images/tech-stack-icons/${tech.key}.svg`}
+                            src={`${base}/${tech.key}.svg`}
                             alt={`${tech.title} icon`}
                             width={32}
                             height={32}

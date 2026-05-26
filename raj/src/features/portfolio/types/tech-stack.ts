@@ -18,4 +18,6 @@ export type TechStack = {
   categories: string[]
   /** If true, use theme-specific icons for dark/light mode. */
   theme?: boolean
+  /** Override icon base URL (uses key to append -light.svg / -dark.svg / .svg). */
+  iconBaseUrl?: string
 }
