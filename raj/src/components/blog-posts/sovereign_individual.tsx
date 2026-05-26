@@ -1,0 +1,81 @@
+"use client";
+/* eslint-disable react/no-unescaped-entities */
+
+import Link from "next/link";
+
+// Helper component for text highlighting
+const Highlight = ({ children }: { children: React.ReactNode }) => {
+  return <span className="text-primary font-semibold">{children}</span>;
+};
+
+export function SovereignIndividual() {
+  return (
+    <div className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert max-w-none">
+      <h3 className="text-primary">Zcash Shielded Pool</h3>
+      <p>
+        The <Highlight>shielded pool</Highlight> in Zcash represents the total
+        amount of ZEC held in privacy-preserving addresses. It's a direct
+        indicator of adoption and can signal price movements—when more people
+        shield their coins, it often precedes significant market activity.
+      </p>
+      <p className="mt-4">
+        <Link
+          href="https://zecprice.com/"
+          target="_blank"
+          className="text-primary hover:text-primary/80 underline underline-offset-2"
+        >
+          ZEC Price - Shielded Pool Tracker
+        </Link>
+        {" - Monitor the size of the shielded pool and its correlation with price action."}
+      </p>
+      <p className="mt-4">
+        <Link
+          href="https://zechub.wiki/dashboard"
+          target="_blank"
+          className="text-primary hover:text-primary/80 underline underline-offset-2"
+        >
+          ZecHub Dashboard
+        </Link>
+        {" - Track shielded pool supply trends and Zcash ecosystem metrics."}
+      </p>
+
+      <div className="my-8 border-b border-border" />
+
+      <div className="my-6 flex justify-center">
+        <iframe
+          src="https://platform.twitter.com/embed/Tweet.html?id=2021320521237872931"
+          className="w-full max-w-xl rounded-lg border border-border"
+          height="600"
+          allowFullScreen
+          title="Tweet by @mert"
+        />
+      </div>
+
+      <div className="my-8 border-b border-border" />
+
+      <div className="my-6">
+        <video
+          controls
+          className="w-full rounded-lg border border-border"
+          preload="metadata"
+          aria-label="Milton Friedman on eCash and internet payments"
+        >
+          <source
+            src="/blog/sovereign_individual/milton_friedman_ecash.mp4"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div className="my-8 border-b border-border" />
+
+      <h3 className="text-primary">Final Thoughts</h3>
+      <p>
+        Financial privacy isn't about having something to hide—it's about
+        preserving the freedom to transact without surveillance. The tools exist;
+        understanding them is the first step.
+      </p>
+    </div>
+  );
+}
