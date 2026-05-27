@@ -2,37 +2,79 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+### 1. Set up environment variables
+
+Copy `.env.local` and fill in your Anthropic API key (required for the AI chat widget):
+
+```bash
+cp .env.local .env.local
+```
+
+```env
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
+```
+
+Get your key at [console.anthropic.com](https://console.anthropic.com).
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## AI Chat Widget
 
-## Learn More
+A floating chat widget (bottom-right corner) lets visitors ask questions about Raj. It's powered by the [Claude API](https://anthropic.com) via the [Vercel AI SDK](https://sdk.vercel.ai).
 
-To learn more about Next.js, take a look at the following resources:
+**How it works:**
+- Visitors click the chat button → type a question
+- Request hits `/api/chat` (Next.js route handler)
+- Claude streams a response using a system prompt built from Raj's real data (experience, projects, skills)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**To update the AI's knowledge**, edit:
+```
+src/features/portfolio/data/chat-system-prompt.ts
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Model used:** `claude-haiku-4-5` (fast and cheap — ideal for a chat widget)
+
+---
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── api/chat/route.ts          # Chat API route
+│   └── (app)/
+│       └── layout.tsx             # Includes ChatWidget
+├── components/
+│   └── chat-widget.tsx            # Floating chat UI
+└── features/portfolio/data/
+    ├── chat-system-prompt.ts      # AI system prompt about Raj
+    ├── user.ts
+    ├── experiences.ts
+    └── projects.ts
+```
+
+---
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Set `ANTHROPIC_API_KEY` in your Vercel project's environment variables, then deploy normally.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 <!-- Trigger deploy v3 -->
