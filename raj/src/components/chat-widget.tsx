@@ -56,7 +56,6 @@ export function ChatWidget() {
               </div>
               <div>
                 <p className="text-sm font-semibold leading-none">Ask about Raj</p>
-                <p className="mt-0.5 text-xs text-muted-foreground">Powered by Claude</p>
               </div>
             </div>
             <Button
