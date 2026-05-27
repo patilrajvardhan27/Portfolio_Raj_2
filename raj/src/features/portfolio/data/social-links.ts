@@ -25,10 +25,4 @@ export const SOCIAL_LINKS: SocialLink[] = [
     subtitle: "PDF Download",
     href: "/Raj_Patil.pdf",
   },
-  {
-    icon: "/assets/social/calendly.svg",
-    title: "Calendly",
-    subtitle: "Book a 30min call",
-    href: "",
-  },
 ]
