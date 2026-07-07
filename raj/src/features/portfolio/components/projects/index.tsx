@@ -13,7 +13,7 @@ export function Projects() {
 
       <CollapsibleList
         items={PROJECTS}
-        max={4}
+        max={PROJECTS.length}
         renderItem={(item) => <ProjectItem project={item} />}
       />
     </Panel>

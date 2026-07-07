@@ -19,6 +19,14 @@ export const MAIN_NAV: NavItem[] = [
     title: "Portfolio",
     href: "/",
   },
+  {
+    title: "Experience",
+    href: "/experience",
+  },
+  {
+    title: "Projects",
+    href: "/projects",
+  },
 ]
 
 export const GITHUB_USERNAME = "patilrajvardhan27"

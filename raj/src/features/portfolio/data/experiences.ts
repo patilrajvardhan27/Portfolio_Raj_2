@@ -139,43 +139,4 @@ export const EXPERIENCES: Experience[] = [
       },
     ],
   },
-  {
-    id: "education",
-    companyName: "Education",
-    positions: [
-      {
-        id: "cu-boulder-ms",
-        title: "University of Colorado Boulder",
-        employmentPeriod: {
-          start: "2025",
-          end: "2027",
-        },
-        icon: "education",
-        description: "Master's in Computer Science",
-        skills: [
-          "Quantum Computing",
-          "Database Systems",
-          "Data Mining",
-          "Neural Networks",
-          "Deep Learning",
-          "Big Data Architecture",
-        ],
-      },
-      {
-        id: "vit",
-        title: "Vellore Institute of Technology (VIT)",
-        employmentPeriod: {
-          start: "2021",
-          end: "2025",
-        },
-        icon: "education",
-        description: "Bachelor's in Computer Science and Engineering",
-        skills: [
-          "Data Structures & Algorithms",
-          "Theory of Computation",
-          "Software Engineering",
-        ],
-      },
-    ],
-  },
 ]
