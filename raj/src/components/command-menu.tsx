@@ -12,7 +12,7 @@ import {
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
-import React, { useCallback, useMemo, useState } from "react"
+import React, { useCallback, useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
 
 import {
@@ -23,7 +23,6 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command"
-import type { PostPreview } from "@/features/blog/types/post"
 import { SOCIAL_LINKS } from "@/features/portfolio/data/social-links"
 import { cn } from "@/lib/utils"
 
@@ -69,7 +68,7 @@ const SOCIAL_LINK_ITEMS: CommandLinkItem[] = SOCIAL_LINKS.map((item) => ({
   openInNewTab: true,
 }))
 
-export function CommandMenu({ posts }: { posts: PostPreview[] }) {
+export function CommandMenu() {
   const router = useRouter()
   const { setTheme } = useTheme()
   const [open, setOpen] = useState(false)
@@ -97,15 +96,6 @@ export function CommandMenu({ posts }: { posts: PostPreview[] }) {
       setTheme(theme)
     },
     [setTheme]
-  )
-
-  const blogLinks = useMemo(
-    () =>
-      posts.map<CommandLinkItem>((post) => ({
-        title: post.title,
-        href: `/blog/${post.slug}`,
-      })),
-    [posts]
   )
 
   return (
@@ -152,13 +142,6 @@ export function CommandMenu({ posts }: { posts: PostPreview[] }) {
             links={PORTFOLIO_LINKS}
             onLinkSelect={handleOpenLink}
           />
-
-          {/* <CommandLinkGroup
-            heading="Blog"
-            links={blogLinks}
-            fallbackIcon={TextIcon}
-            onLinkSelect={handleOpenLink}
-          /> */}
 
           <CommandLinkGroup
             heading="Social Links"

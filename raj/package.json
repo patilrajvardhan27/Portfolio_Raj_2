@@ -1,5 +1,5 @@
 {
-  "name": "wimpywarlord.github.io",
+  "name": "raj-portfolio",
   "version": "0.1.0",
   "description": "Rajvardhan Patil's personal portfolio and blog.",
   "homepage": "",
@@ -18,11 +18,12 @@
     "check-types": "tsc --noEmit --pretty"
   },
   "dependencies": {
-    "@ai-sdk/anthropic": "^1.2.12",
+    "@ai-sdk/anthropic": "^4.0.8",
+    "@ai-sdk/react": "^4.0.17",
     "@base-ui/react": "^1.1.0",
     "@bprogress/next": "^3.2.12",
     "@date-fns/tz": "^1.4.1",
-    "ai": "^4.3.19",
+    "ai": "^7.0.16",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -31,7 +32,7 @@
     "jotai": "^2.12.5",
     "lucide-react": "^0.544.0",
     "motion": "^12.34.0",
-    "next": "^16.2.6",
+    "next": "^16.2.10",
     "next-themes": "^0.4.6",
     "nuqs": "^2.8.0",
     "radix-ui": "^1.4.3",

@@ -1,7 +1,7 @@
 "use client"
 
-import type { Message } from "ai"
-import { useChat } from "ai/react"
+import { useChat } from "@ai-sdk/react"
+import type { UIMessage } from "ai"
 import { MessageCircleIcon, SendIcon, XIcon } from "lucide-react"
 import React, { useEffect, useRef, useState } from "react"
 import ReactMarkdown from "react-markdown"
@@ -10,13 +10,22 @@ import { cn } from "@/lib/utils"
 
 import { Button } from "./ui/button"
 
+function getMessageText(message: UIMessage) {
+  return message.parts
+    .filter((part) => part.type === "text")
+    .map((part) => part.text)
+    .join("")
+}
+
 export function ChatWidget() {
   const [open, setOpen] = useState(false)
+  const [input, setInput] = useState("")
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const { messages, input, handleInputChange, handleSubmit, isLoading, error } =
-    useChat({ api: "/api/chat" })
+  const { messages, sendMessage, status, error } = useChat()
+
+  const isLoading = status === "submitted" || status === "streaming"
 
   useEffect(() => {
     if (open) {
@@ -28,7 +37,8 @@ export function ChatWidget() {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!input.trim() || isLoading) return
-    handleSubmit(e)
+    sendMessage({ text: input })
+    setInput("")
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -88,9 +98,7 @@ export function ChatWidget() {
                       key={s}
                       className="rounded-full border border-edge bg-accent px-3 py-1 text-xs text-muted-foreground transition-colors hover:bg-accent/80 hover:text-foreground"
                       onClick={() => {
-                        handleInputChange({
-                          target: { value: s },
-                        } as React.ChangeEvent<HTMLInputElement>)
+                        setInput(s)
                         inputRef.current?.focus()
                       }}
                     >
@@ -101,7 +109,7 @@ export function ChatWidget() {
               </div>
             )}
 
-            {messages.map((m: Message) => (
+            {messages.map((m) => (
               <div
                 key={m.id}
                 className={cn(
@@ -137,10 +145,10 @@ export function ChatWidget() {
                         ),
                       }}
                     >
-                      {m.content}
+                      {getMessageText(m)}
                     </ReactMarkdown>
                   ) : (
-                    m.content
+                    getMessageText(m)
                   )}
                 </div>
               </div>
@@ -171,7 +179,7 @@ export function ChatWidget() {
             <input
               ref={inputRef}
               value={input}
-              onChange={handleInputChange}
+              onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Ask a question…"
               className={cn(

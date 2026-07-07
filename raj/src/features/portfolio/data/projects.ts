@@ -3,66 +3,93 @@ import type { Project } from "../types/projects"
 export const PROJECTS: Project[] = [
   {
     id: "gradbro",
-    title: "Gradbro",
+    title: "GradBro",
     period: {
       start: "2024",
     },
-    link: "https://gradbro.com",
+    link: "https://www.gradbro.com/",
     skills: [
-      "React",
       "Next.js",
-      "TypeScript",
-      "Python",
-      "AI",
-      "Product",
+      "React",
+      "LLMs",
+      "AWS CloudFront",
+      "Real-time Analysis",
     ],
     description:
-      "Helping students navigate the graduate school admissions process. Building to 1M MRR.",
+      "AI-powered Statement of Purpose (SOP) editor with ideation, writing assistance, and review features for college application essays. Supports 1500+ users.",
     isExpanded: true,
   },
   {
-    id: "black-myth-wukong-ai",
-    title: "Black Myth Wukong AI Agent",
+    id: "gradmits",
+    title: "Gradmits",
+    period: {
+      start: "2024",
+    },
+    link: "https://www.gradmits.com/",
+    skills: [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "AWS",
+      "LLMs",
+      "FastAPI",
+      "MongoDB",
+    ],
+    description:
+      "Complete graduate admissions toolkit providing personalized university recommendations, application tracking, and consulting services for US Master's programs.",
+  },
+  {
+    id: "saber",
+    title: "SABER",
+    period: {
+      start: "2026",
+    },
+    link: "https://saber-six-rho.vercel.app/",
+    skills: [
+      "Next.js",
+      "TypeScript",
+      "FastAPI",
+      "Python",
+      "Pandas",
+      "SciPy",
+    ],
+    description:
+      "Full-stack building energy audit platform guiding users through a multi-step audit workflow — geometry, envelope, HVAC, equipment, and ECM selection — running change-point analysis on utility data to generate energy conservation reports with PDF export.",
+  },
+  {
+    id: "redbro",
+    title: "Redbro",
     period: {
       start: "2025",
     },
-    link: "https://github.com/patilrajvardhan27",
-    skills: ["Python", "AI", "Computer Vision", "Reinforcement Learning"],
+    link: "https://github.com/patilrajvardhan27/Redbro",
+    skills: [
+      "Python",
+      "PRAW",
+      "PostgreSQL",
+      "Redis",
+      "OpenAI API",
+      "Docker",
+    ],
     description:
-      "AI agent that plays Black Myth Wukong using computer vision and reinforcement learning techniques.",
+      "Reddit marketing automation system for AI video SaaS, featuring a high-intent post discovery engine with ML-based intent scoring, multi-account management with rate limiting, and automated engagement workflows.",
   },
   {
-    id: "accomplice",
-    title: "Accomplice",
+    id: "manter",
+    title: "Manter",
     period: {
-      start: "2023",
-      end: "2024",
+      start: "2026",
     },
-    link: "https://github.com/patilrajvardhan27",
-    skills: ["React", "TypeScript", "AI", "Full-stack"],
-    description: "AI-powered productivity and collaboration tool.",
-  },
-  {
-    id: "messit",
-    title: "MessIt",
-    period: {
-      start: "2022",
-      end: "2023",
-    },
-    link: "https://github.com/patilrajvardhan27",
-    skills: ["React Native", "TypeScript", "Firebase", "Mobile"],
-    description: "Real-time messaging application with modern UX.",
-  },
-  {
-    id: "alzheimers-research",
-    title: "Alzheimer's Research",
-    period: {
-      start: "2021",
-      end: "2022",
-    },
-    link: "https://github.com/patilrajvardhan27",
-    skills: ["Python", "Machine Learning", "Research", "Healthcare"],
+    link: "https://github.com/patilrajvardhan27/Manter",
+    skills: [
+      "React Native",
+      "Node.js",
+      "PostgreSQL",
+      "Socket.IO",
+      "Claude AI",
+      "AWS S3",
+    ],
     description:
-      "Research project applying machine learning to early Alzheimer's disease detection.",
+      "AI-powered dating app built for women's priorities — men are evaluated through open-ended scenario questions analyzed by Claude AI, with real-time red flag detection on chat messages and compatibility scoring based on custom priorities.",
   },
 ]

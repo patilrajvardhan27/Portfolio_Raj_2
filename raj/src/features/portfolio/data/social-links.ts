@@ -10,7 +10,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     icon: "/assets/social/github.svg",
     title: "GitHub",
-    subtitle: "@wimpywarlord",
+    subtitle: "@patilrajvardhan27",
     href: "https://github.com/patilrajvardhan27",
   },
   {
@@ -23,6 +23,6 @@ export const SOCIAL_LINKS: SocialLink[] = [
     icon: "/assets/social/resume.svg",
     title: "Resume",
     subtitle: "PDF Download",
-    href: "/Raj_Patil.pdf",
+    href: "/Resume_Rajvardhan.pdf",
   },
 ]
