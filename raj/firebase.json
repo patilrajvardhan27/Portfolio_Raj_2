@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "rajpatil",
     "public": "dist/raj-portfolio/browser",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "cleanUrls": true,
