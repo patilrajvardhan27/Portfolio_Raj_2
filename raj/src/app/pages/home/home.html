@@ -1,0 +1,49 @@
+<header class="top">
+  <nav class="top__links" aria-label="Quick links">
+    <a routerLink="/search" [queryParams]="{ q: defaultQuery }">About</a>
+    <a [href]="profile.resume" target="_blank" rel="noopener">Résumé</a>
+  </nav>
+  <app-account-bar />
+</header>
+
+<main class="hero">
+  <h1 class="hero__mark"><app-wordmark /></h1>
+  <p class="hero__tagline">{{ profile.tagline }}</p>
+
+  <div class="hero__search">
+    <app-search-box [autofocus]="true" />
+  </div>
+
+  <div class="hero__actions">
+    <button type="button" class="pill" (click)="search()">Search Rajvardhan</button>
+    <button type="button" class="pill" (click)="lucky()">I’m Feeling Lucky</button>
+  </div>
+
+  <p class="hero__explore">
+    Explore:
+    @for (section of sections; track section.id) {
+      <a routerLink="/search" [queryParams]="{ q: defaultQuery, tab: section.id }">{{
+        section.label
+      }}</a>
+    }
+  </p>
+</main>
+
+<footer class="foot">
+  <div class="foot__row foot__row--place">{{ profile.location }}</div>
+  <div class="foot__row foot__row--links">
+    <nav aria-label="Sections">
+      @for (section of sections.slice(0, 4); track section.id) {
+        <a routerLink="/search" [queryParams]="{ q: defaultQuery, tab: section.id }">{{
+          section.label
+        }}</a>
+      }
+    </nav>
+    <nav aria-label="Profiles">
+      @for (social of socials; track social.label) {
+        <a [href]="social.url" target="_blank" rel="noopener">{{ social.label }}</a>
+      }
+      <a routerLink="/search" [queryParams]="{ q: defaultQuery, tab: 'contact' }">Contact</a>
+    </nav>
+  </div>
+</footer>

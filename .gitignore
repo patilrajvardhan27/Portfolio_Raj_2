@@ -1,0 +1,10 @@
+# System files
+.DS_Store
+
+# Local tooling
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+
+# Environment
+.env*

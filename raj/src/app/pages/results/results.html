@@ -1,0 +1,192 @@
+<header class="bar">
+  <div class="bar__main">
+    <a class="bar__mark" routerLink="/" aria-label="Back to the home page"><app-wordmark /></a>
+    <div class="bar__search">
+      <app-search-box [query]="query()" [tab]="tab()" />
+    </div>
+    <app-account-bar class="bar__account" />
+  </div>
+
+  <nav class="tabs" aria-label="Result types">
+    @for (item of tabs; track item.id) {
+      <a
+        class="tabs__tab"
+        routerLink="/search"
+        [queryParams]="{ q: query() || defaultQuery, tab: item.id === 'all' ? null : item.id }"
+        [class.tabs__tab--current]="item.id === tab()"
+        [attr.aria-current]="item.id === tab() ? 'page' : null"
+      >
+        <span class="icon">{{ item.icon }}</span
+        >{{ item.label }}
+      </a>
+    }
+  </nav>
+</header>
+
+<main class="page">
+  <section class="page__results" aria-label="Search results">
+    @if (total()) {
+      <p class="stats">
+        About {{ total() }} {{ total() === 1 ? 'result' : 'results' }} ({{
+          outcome().seconds
+        }}
+        seconds)
+      </p>
+    }
+
+    @if (showAbout()) {
+      <article class="featured">
+        <p class="featured__text">
+          @for (segment of aboutSummary(); track $index) {
+            @if (segment.hit) {
+              <b>{{ segment.text }}</b>
+            } @else {
+              {{ segment.text }}
+            }
+          }
+        </p>
+        <ul class="featured__points">
+          @for (point of about.points; track $index) {
+            <li>{{ point }}</li>
+          }
+        </ul>
+        <div class="featured__origin">
+          <img class="avatar" [src]="profile.photo" alt="" width="28" height="28" />
+          <div>
+            <span class="featured__source">{{ profile.name }}</span>
+            <span class="featured__trail">{{ profile.tagline }}</span>
+          </div>
+        </div>
+      </article>
+    }
+
+    @if (isAll()) {
+      <div class="page__panel-inline">
+        <app-knowledge-panel />
+      </div>
+    }
+
+    @if (!total()) {
+      <div class="empty">
+        @if (outcome().entries.length) {
+          <p>
+            Nothing under <b>{{ tabLabel() }}</b> matches <b>{{ query() }}</b
+            >.
+          </p>
+          <p>
+            <a routerLink="/search" [queryParams]="{ q: query() }"
+              >See all {{ outcome().entries.length }} results for this search</a
+            >
+          </p>
+        } @else {
+          <p>
+            Your search — <b>{{ query() }}</b> — did not match anything in this portfolio.
+          </p>
+          <p>Suggestions:</p>
+          <ul>
+            <li>Try a technology, like <i>FastAPI</i> or <i>Flutter</i>.</li>
+            <li>Try a project or employer name, like <i>GradBro</i> or <i>VerbNet</i>.</li>
+            <li>
+              Or
+              <a routerLink="/search" [queryParams]="{ q: defaultQuery }">browse everything</a>.
+            </li>
+          </ul>
+        }
+      </div>
+    }
+
+    <ol class="list">
+      @for (entry of lead(); track entry.id) {
+        <li>
+          <app-result-item [entry]="entry" [tokens]="outcome().tokens" [expanded]="!isAll()" />
+        </li>
+      }
+    </ol>
+
+    @if (isAll() && total()) {
+      <section class="ask" aria-labelledby="ask-heading">
+        <h2 id="ask-heading">People also ask</h2>
+        @for (item of questions; track item.question) {
+          @let open = openQuestion() === item.question;
+          <div class="ask__item">
+            <button
+              type="button"
+              class="ask__question"
+              [class.ask__question--open]="open"
+              [attr.aria-expanded]="open"
+              (click)="toggleQuestion(item.question)"
+            >
+              <span>{{ item.question }}</span>
+              <span class="icon">expand_more</span>
+            </button>
+            @if (open) {
+              <div class="ask__answer">
+                <p>{{ item.answer }}</p>
+                <a routerLink="/search" [queryParams]="{ q: defaultQuery + ' ' + item.query }">
+                  More results <span class="icon">arrow_forward</span>
+                </a>
+              </div>
+            }
+          </div>
+        }
+      </section>
+    }
+
+    @if (rest().length) {
+      <ol class="list">
+        @for (entry of rest(); track entry.id) {
+          <li>
+            <app-result-item [entry]="entry" [tokens]="outcome().tokens" />
+          </li>
+        }
+      </ol>
+    }
+
+    <section class="related" aria-labelledby="related-heading">
+      <h2 id="related-heading">Related searches</h2>
+      <ul>
+        @for (term of related; track term) {
+          <li>
+            <a routerLink="/search" [queryParams]="{ q: term }">
+              <span class="icon">search</span>
+              <span>{{ term }}</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <nav class="pager" aria-label="Sections">
+      <span class="pager__letter pager__letter--blue" aria-hidden="true">R</span>
+      @for (item of tabs; track item.id) {
+        <a
+          class="pager__page"
+          routerLink="/search"
+          [queryParams]="{ q: query() || defaultQuery, tab: item.id === 'all' ? null : item.id }"
+          [class.pager__page--current]="item.id === tab()"
+          [attr.aria-current]="item.id === tab() ? 'page' : null"
+          [attr.aria-label]="item.label"
+          [title]="item.label"
+        >
+          <span class="pager__letter" aria-hidden="true">a</span>
+          <span class="pager__label" aria-hidden="true">{{ $index + 1 }}</span>
+        </a>
+      }
+      <span class="pager__letter pager__letter--green" aria-hidden="true">j</span>
+    </nav>
+  </section>
+
+  <div class="page__panel">
+    <app-knowledge-panel />
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot__row foot__row--place">{{ profile.location }}</div>
+  <div class="foot__row">
+    <span>© {{ year }} {{ profile.name }}</span>
+    <a [href]="profile.resume" target="_blank" rel="noopener">Résumé</a>
+    <a routerLink="/search" [queryParams]="{ q: defaultQuery, tab: 'contact' }">Contact</a>
+    <span class="foot__note">An independent personal site, not affiliated with Google.</span>
+  </div>
+</footer>

@@ -1,0 +1,61 @@
+<form
+  class="box"
+  [class.box--open]="expanded()"
+  role="search"
+  (submit)="$event.preventDefault(); submit()"
+>
+  <div class="box__row">
+    <span class="icon box__lead">search</span>
+    <input
+      #field
+      class="box__input"
+      type="text"
+      name="q"
+      inputmode="search"
+      enterkeyhint="search"
+      autocomplete="off"
+      autocapitalize="off"
+      autocorrect="off"
+      spellcheck="false"
+      role="combobox"
+      aria-label="Search this portfolio"
+      aria-autocomplete="list"
+      aria-controls="search-suggestions"
+      [attr.aria-expanded]="expanded()"
+      [attr.aria-activedescendant]="active() >= 0 ? 'suggestion-' + active() : null"
+      [value]="value()"
+      (input)="onInput($event)"
+      (click)="open.set(true)"
+      (keydown)="onKey($event)"
+    />
+    @if (value()) {
+      <button type="button" class="box__clear" aria-label="Clear search" (click)="clear()">
+        <span class="icon">close</span>
+      </button>
+      <span class="box__divider"></span>
+    }
+    <button type="submit" class="box__go" aria-label="Search">
+      <span class="icon">search</span>
+    </button>
+  </div>
+
+  @if (expanded()) {
+    <ul class="box__list" id="search-suggestions" role="listbox" aria-label="Suggested searches">
+      @for (suggestion of suggestions(); track suggestion) {
+        <li
+          class="box__option"
+          role="option"
+          [id]="'suggestion-' + $index"
+          [class.box__option--active]="$index === active()"
+          [attr.aria-selected]="$index === active()"
+          (pointerenter)="active.set($index)"
+          (pointerdown)="$event.preventDefault()"
+          (click)="submit(suggestion)"
+        >
+          <span class="icon">{{ value().trim() ? 'search' : 'trending_up' }}</span>
+          <span>{{ suggestion }}</span>
+        </li>
+      }
+    </ul>
+  }
+</form>
