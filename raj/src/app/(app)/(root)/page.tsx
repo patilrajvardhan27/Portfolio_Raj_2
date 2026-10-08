@@ -5,6 +5,7 @@ import { About } from "@/features/portfolio/components/about"
 import { Overview } from "@/features/portfolio/components/overview"
 import { ProfileCover } from "@/features/portfolio/components/profile-cover"
 import { ProfileHeader } from "@/features/portfolio/components/profile-header"
+import { Research } from "@/features/portfolio/components/research"
 import { SocialLinks } from "@/features/portfolio/components/social-links-v2"
 import { TechStack } from "@/features/portfolio/components/tech-stack"
 import { USER } from "@/features/portfolio/data/user"
@@ -41,6 +42,9 @@ export default function Page() {
 
         <About />
         <SectionSeparator variant={3} />
+
+        <Research />
+        <SectionSeparator variant={1} />
 
         <TechStack />
         <SectionSeparator variant={4} />

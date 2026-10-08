@@ -39,8 +39,8 @@ export const USER = {
 - Cooked up:
   - AI dating app built for women's priorities — [Manter](https://github.com/patilrajvardhan27/Manter)
   - AI dining companion for CU Boulder — [Buff Bites](https://buffbites.live/)
-  - Reddit marketing automation system — [Redbro](https://github.com/patilrajvardhan27/Redbro)
-  - Building energy analysis tool — [Saber](https://saber-six-rho.vercel.app/).
+  - Reddit marketing automation system — Redbro
+  - Building energy analysis tool — [Saber](https://saber-web.azurewebsites.net/).
   - Association Portal — [CAK](https://cak-kolhapur.com/).
   - Campus utility app for my university — [MessIt](https://play.google.com/store/apps/details?id=com.vinnovateit.messit).
 `,

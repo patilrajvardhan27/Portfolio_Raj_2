@@ -7,6 +7,9 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Landscape phones and other very short viewports */
+@custom-variant short (@media (max-height: 30rem));
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -375,7 +378,8 @@
   } */
 
   body {
-    @apply bg-background font-sans font-medium text-foreground antialiased;
+    @apply touch-manipulation bg-background font-sans font-medium text-foreground antialiased;
+    -webkit-tap-highlight-color: transparent;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
   }

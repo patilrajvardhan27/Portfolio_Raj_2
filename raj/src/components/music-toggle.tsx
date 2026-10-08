@@ -86,6 +86,7 @@ export const MusicToggle = () => {
         <TooltipTrigger
           render={
             <Button
+              className="relative"
               variant="ghost"
               size="icon"
               aria-label={label}

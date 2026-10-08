@@ -17,7 +17,7 @@ export function SiteFooter() {
         <div className="screen-line-before screen-line-after flex w-full before:z-1 after:z-1">
           <div className="mx-auto flex items-center justify-center gap-3 border-x border-edge bg-background px-4">
             <a
-              className="flex items-center text-muted-foreground transition-[color] hover:text-foreground"
+              className="relative flex items-center text-muted-foreground transition-[color] after:absolute after:-inset-3 hover:text-foreground"
               href="https://x.com/radian_27"
               target="_blank"
               rel="noopener noreferrer"
@@ -29,7 +29,7 @@ export function SiteFooter() {
             <Separator />
 
             <a
-              className="flex items-center text-muted-foreground transition-[color] hover:text-foreground"
+              className="relative flex items-center text-muted-foreground transition-[color] after:absolute after:-inset-3 hover:text-foreground"
               href="https://github.com/patilrajvardhan27"
               target="_blank"
               rel="noopener noreferrer"
@@ -41,7 +41,7 @@ export function SiteFooter() {
             <Separator />
 
             <a
-              className="flex items-center text-muted-foreground transition-[color] hover:text-foreground"
+              className="relative flex items-center text-muted-foreground transition-[color] after:absolute after:-inset-3 hover:text-foreground"
               href="https://www.linkedin.com/in/patilrajvardhan27/"
               target="_blank"
               rel="noopener noreferrer"

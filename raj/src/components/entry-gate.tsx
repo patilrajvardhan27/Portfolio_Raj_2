@@ -210,11 +210,11 @@ export const EntryGate = () => {
       aria-modal="true"
       aria-label="Enter the site"
       className={cn(
-        "fixed inset-0 z-100 flex flex-col items-center justify-center gap-8 overflow-hidden bg-linear-to-b from-(--brand-red) to-(--brand-red-deep) px-4 text-zinc-50 sm:gap-10",
+        "fixed inset-0 z-100 flex flex-col items-center justify-center gap-8 overflow-hidden bg-linear-to-b from-(--brand-red) to-(--brand-red-deep) px-[max(1rem,env(safe-area-inset-left))] pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] text-zinc-50 select-none sm:gap-10 short:flex-row short:gap-6",
         phase === "revealing" && "pointer-events-none entry-reveal-mask"
       )}
     >
-      <div className="flex items-center gap-2 text-sm font-black text-zinc-50/80 sm:text-base">
+      <div className="flex items-center gap-2 text-sm font-black text-zinc-50/80 sm:text-base short:hidden">
         <TuneMark className="text-zinc-50/80" />
         <span className="font-devanagari" lang="hi">
           {USER.displayNameDevanagari}
@@ -228,7 +228,7 @@ export const EntryGate = () => {
         aria-label="Drag the needle onto the record to start the music and enter the site"
         onPointerDown={handleTurntablePointerDown}
         onClick={handleTurntableClick}
-        className="relative aspect-5/4 w-70 cursor-pointer rounded-3xl outline-none focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black/40 disabled:cursor-default sm:w-100"
+        className="relative aspect-5/4 w-70 cursor-pointer rounded-3xl outline-none focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black/40 disabled:cursor-default sm:w-100 short:w-60 short:shrink-0"
       >
         {/* Record */}
         <span className="absolute top-0 left-0 block aspect-square h-full rounded-full shadow-2xl shadow-black/60">
@@ -270,14 +270,14 @@ export const EntryGate = () => {
           )}
         >
           {/* Wider invisible grab area around the thin arm */}
-          <span className="absolute -inset-x-5 -top-2 -bottom-6 block" />
+          <span className="absolute -inset-x-6 -top-2 -bottom-7 block" />
           <span className="absolute -bottom-1 left-1/2 block h-[15%] w-4 -translate-x-1/2 rounded-sm bg-zinc-700 shadow-sm shadow-black/60 sm:w-5" />
         </span>
         <span className="pointer-events-none absolute top-[12%] left-[89.6%] block aspect-square w-[5%] -translate-1/2 rounded-full bg-zinc-950" />
       </button>
 
-      <div className="text-center" aria-live="polite">
-        <p className="text-4xl leading-none font-black tracking-tighter uppercase sm:text-6xl">
+      <div className="text-center short:text-left" aria-live="polite">
+        <p className="text-4xl leading-none font-black tracking-tighter uppercase sm:text-6xl short:text-4xl">
           {isNeedlePlaced ? "Now playing" : "Drop the needle"}
         </p>
         <p className="mt-2 text-xs font-bold tracking-wide text-zinc-50/80 uppercase sm:mt-3 sm:text-sm">

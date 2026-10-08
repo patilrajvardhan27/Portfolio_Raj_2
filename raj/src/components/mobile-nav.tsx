@@ -17,7 +17,7 @@ export function MobileNav({ items }: { items: NavItem[] }) {
 
   const toggleMenuButton = (
     <Button
-      className="group flex flex-col gap-1 data-[state=open]:bg-accent sm:hidden"
+      className="group relative flex flex-col gap-1 data-[state=open]:bg-accent sm:hidden"
       variant="ghost"
       size="icon"
     >

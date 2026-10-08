@@ -24,7 +24,7 @@ export function TechStack() {
                   <TooltipTrigger
                     render={
                       <a
-                        className="text-brand transition-[scale] ease-out hover:scale-110"
+                        className="relative text-brand transition-[scale] ease-out after:absolute after:-inset-2 hover:scale-110 active:scale-95"
                         href={tech.href}
                         target="_blank"
                         rel="noopener noreferrer"

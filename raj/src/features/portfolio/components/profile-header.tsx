@@ -38,6 +38,7 @@ export function ProfileHeader() {
               <HoverSwapName
                 devanagari={USER.displayNameDevanagari}
                 english={USER.displayName}
+                isTappable
               />
             </h1>
 

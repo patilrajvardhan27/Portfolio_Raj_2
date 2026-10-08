@@ -30,7 +30,7 @@ export function SiteHeader() {
         data-header-container
       >
         <Link
-          className="py-1 text-lg leading-snug font-black text-gradient-brand transition-[scale] ease-out active:scale-[0.98] sm:text-xl"
+          className="py-2 text-lg leading-snug font-black text-gradient-brand transition-[scale] ease-out active:scale-[0.98] sm:text-xl"
           href="/"
           aria-label="Home"
         >
@@ -50,7 +50,7 @@ export function SiteHeader() {
 
         <DesktopNav items={MAIN_NAV} />
 
-        <div className="flex items-center *:first:mr-2">
+        <div className="flex items-center *:first:mr-2 pointer-coarse:[&_button]:after:absolute pointer-coarse:[&_button]:after:-inset-1.5">
           <CommandMenu />
           <span className="mx-2 flex h-4 w-px bg-border" />
           <MusicToggle />

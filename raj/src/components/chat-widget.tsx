@@ -54,7 +54,7 @@ export function ChatWidget() {
       {open && (
         <div
           className={cn(
-            "flex h-[480px] w-[min(calc(100vw-2rem),380px)] flex-col",
+            "flex h-[min(480px,calc(100svh-7rem))] w-[min(calc(100vw-2rem),380px)] flex-col",
             "rounded-2xl border border-edge bg-background shadow-2xl",
             "animate-in slide-in-from-bottom-4 fade-in-0 duration-200"
           )}
@@ -72,7 +72,7 @@ export function ChatWidget() {
             <Button
               variant="ghost"
               size="icon"
-              className="size-7 rounded-full"
+              className="relative size-7 rounded-full after:absolute after:-inset-2"
               onClick={() => setOpen(false)}
               aria-label="Close chat"
             >
@@ -97,7 +97,7 @@ export function ChatWidget() {
                   {SUGGESTIONS.map((s) => (
                     <button
                       key={s}
-                      className="rounded-full border border-edge bg-accent px-3 py-1 text-xs text-muted-foreground transition-colors hover:bg-accent/80 hover:text-foreground"
+                      className="rounded-full border border-edge bg-accent px-3 py-1 text-xs text-muted-foreground transition-colors hover:bg-accent/80 hover:text-foreground pointer-coarse:px-4 pointer-coarse:py-2.5 pointer-coarse:text-sm"
                       onClick={() => {
                         setInput(s)
                         inputRef.current?.focus()
@@ -184,7 +184,8 @@ export function ChatWidget() {
               onKeyDown={handleKeyDown}
               placeholder="Ask a question…"
               className={cn(
-                "h-9 flex-1 rounded-xl border border-input bg-accent px-3 text-sm outline-none",
+                // 16px text on phones stops iOS zooming the page when the field is focused
+                "h-10 min-w-0 flex-1 rounded-xl border border-input bg-accent px-3 text-base outline-none sm:h-9 sm:text-sm",
                 "placeholder:text-muted-foreground",
                 "focus:border-ring focus:ring-2 focus:ring-ring/30",
                 "dark:bg-input/30"
@@ -196,7 +197,7 @@ export function ChatWidget() {
             <Button
               type="submit"
               size="icon"
-              className="size-9 shrink-0 rounded-xl"
+              className="size-10 shrink-0 rounded-xl sm:size-9"
               disabled={!input.trim() || isLoading}
               aria-label="Send message"
             >

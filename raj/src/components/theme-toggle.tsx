@@ -34,6 +34,7 @@ export function ThemeToggle() {
       <TooltipTrigger
         render={
           <Button
+            className="relative"
             variant="ghost"
             size="icon"
             onClick={switchTheme}

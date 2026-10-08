@@ -3,17 +3,17 @@ export type Project = {
   id: string
   title: string
   /**
-   * Project period for display and sorting.
+   * Project period for display and sorting; omit when the dates are unknown.
    * Use "MM.YYYY" format. Omit `end` for ongoing projects.
    */
-  period: {
+  period?: {
     /** Start date (e.g., "05.2025"). */
     start: string
     /** End date; leave undefined for "Present". */
     end?: string
   }
-  /** Public URL (site, repository, demo, or video). */
-  link: string
+  /** Public URL (site, repository, demo, or video); omit when there is none. */
+  link?: string
   /** Tags/technologies for chips or filtering. */
   skills: string[]
   /** Optional rich description; Markdown and line breaks supported. */

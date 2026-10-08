@@ -27,9 +27,9 @@ export function ProjectItem({
   className?: string
   project: Project
 }) {
-  const { start, end } = project.period
-  const isOngoing = !end
-  const isSinglePeriod = end === start
+  const { period, link } = project
+  const isOngoing = !period?.end
+  const isSinglePeriod = period?.end === period?.start
 
   return (
     <CollapsibleWithContext defaultOpen={project.isExpanded} asChild>
@@ -58,52 +58,56 @@ export function ProjectItem({
           <div className="flex-1 border-l border-dashed border-edge">
             <CollapsibleTrigger className="flex w-full items-center gap-2 p-4 pr-2 text-left">
               <div className="flex-1">
-                <h3 className="mb-1 leading-snug font-bold text-balance">
+                <h3 className="leading-snug font-bold text-balance not-last:mb-1">
                   {project.title}
                 </h3>
 
-                <dl className="text-sm text-muted-foreground">
-                  <dt className="sr-only">Period</dt>
-                  <dd className="flex items-center gap-0.5">
-                    <span>{start}</span>
-                    {!isSinglePeriod && (
-                      <>
-                        <span className="font-mono">—</span>
-                        {isOngoing ? (
-                          <>
-                            <InfinityIcon
-                              className="size-4.5 translate-y-[0.5px]"
-                              aria-hidden
-                            />
-                            <span className="sr-only">Present</span>
-                          </>
-                        ) : (
-                          <span>{end}</span>
-                        )}
-                      </>
-                    )}
-                  </dd>
-                </dl>
+                {period && (
+                  <dl className="text-sm text-muted-foreground">
+                    <dt className="sr-only">Period</dt>
+                    <dd className="flex items-center gap-0.5">
+                      <span>{period.start}</span>
+                      {!isSinglePeriod && (
+                        <>
+                          <span className="font-mono">—</span>
+                          {isOngoing ? (
+                            <>
+                              <InfinityIcon
+                                className="size-4.5 translate-y-[0.5px]"
+                                aria-hidden
+                              />
+                              <span className="sr-only">Present</span>
+                            </>
+                          ) : (
+                            <span>{period.end}</span>
+                          )}
+                        </>
+                      )}
+                    </dd>
+                  </dl>
+                )}
               </div>
 
-              <Tooltip>
-                <TooltipTrigger
-                  render={
-                    <a
-                      className="relative flex size-6 shrink-0 items-center justify-center text-muted-foreground after:absolute after:-inset-2 hover:text-foreground"
-                      href={addQueryParams(project.link, UTM_PARAMS)}
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      <LinkIcon className="pointer-events-none size-4" />
-                      <span className="sr-only">Open Project Link</span>
-                    </a>
-                  }
-                />
-                <TooltipContent>
-                  <p>Open Project Link</p>
-                </TooltipContent>
-              </Tooltip>
+              {link && (
+                <Tooltip>
+                  <TooltipTrigger
+                    render={
+                      <a
+                        className="relative flex size-6 shrink-0 items-center justify-center text-muted-foreground after:absolute after:-inset-2.5 hover:text-foreground"
+                        href={addQueryParams(link, UTM_PARAMS)}
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        <LinkIcon className="pointer-events-none size-4" />
+                        <span className="sr-only">Open Project Link</span>
+                      </a>
+                    }
+                  />
+                  <TooltipContent>
+                    <p>Open Project Link</p>
+                  </TooltipContent>
+                </Tooltip>
+              )}
 
               <div
                 className="shrink-0 text-muted-foreground [&_svg]:size-4"

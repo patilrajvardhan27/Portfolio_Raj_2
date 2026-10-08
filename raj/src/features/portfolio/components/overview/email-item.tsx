@@ -46,9 +46,9 @@ export function EmailItem({ email }: EmailItemProps) {
         </IntroItemLink>
       </IntroItemContent>
 
-      <div className="-translate-x-2 translate-y-px opacity-0 transition-opacity group-hover:opacity-100">
+      <div className="-translate-x-2 translate-y-px opacity-0 transition-opacity group-hover:opacity-100 pointer-coarse:opacity-100">
         <Button
-          className="text-muted-foreground"
+          className="relative text-muted-foreground after:absolute after:-inset-2"
           variant="ghost"
           size="icon-xs"
           onClick={() => {
