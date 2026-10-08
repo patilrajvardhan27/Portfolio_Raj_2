@@ -9,6 +9,9 @@ export const SITE_INFO = {
   keywords: USER.keywords,
 }
 
+/** Longest chat message the widget sends and the API accepts. */
+export const CHAT_MAX_INPUT_CHARS = 1000
+
 /** Fired on `window` when the visitor drops the needle on the entry gate. */
 export const ENTRY_GATE_ENTER_EVENT = "entry-gate:enter"
 

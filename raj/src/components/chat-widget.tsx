@@ -6,6 +6,7 @@ import { MessageCircleIcon, SendIcon, XIcon } from "lucide-react"
 import React, { useEffect, useRef, useState } from "react"
 import ReactMarkdown from "react-markdown"
 
+import { CHAT_MAX_INPUT_CHARS } from "@/config/site"
 import { cn } from "@/lib/utils"
 
 import { Button } from "./ui/button"
@@ -190,6 +191,7 @@ export function ChatWidget() {
               )}
               disabled={isLoading}
               autoComplete="off"
+              maxLength={CHAT_MAX_INPUT_CHARS}
             />
             <Button
               type="submit"
