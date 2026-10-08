@@ -10,7 +10,7 @@ import { Kbd } from "./ui/kbd"
 
 const MUSIC_SRC = "/assets/audio/background.mp3"
 const MUSIC_PAUSED_STORAGE_KEY = "background-music-paused"
-const UNLOCK_EVENTS = ["pointerdown", "keydown"] as const
+const UNLOCK_EVENTS = ["pointerdown", "touchend", "click", "keydown"] as const
 
 const readIsPausedPreference = (): boolean => {
   try {
@@ -108,7 +108,7 @@ export const MusicToggle = () => {
         ref={audioRef}
         src={MUSIC_SRC}
         loop
-        preload="none"
+        preload="auto"
         onPlay={handlePlay}
         onPause={handlePause}
         onError={handleUnavailable}

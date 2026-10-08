@@ -52,6 +52,8 @@ pnpm-lock.yaml
 *.avi
 *.mkv
 *.mp3
+# background track for the site, must ship with the deploy
+!public/assets/audio/background.mp3
 *.wav
 *.ogg
 *.m4a
