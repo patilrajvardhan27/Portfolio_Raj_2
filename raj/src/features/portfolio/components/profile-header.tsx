@@ -1,4 +1,4 @@
-import { HoverSwapName } from "@/components/hover-swap-name"
+import { AlternatingName } from "@/components/alternating-name"
 import { TextFlip } from "@/components/text-flip"
 import { USER } from "@/features/portfolio/data/user"
 
@@ -32,13 +32,12 @@ export function ProfileHeader() {
         <div className="border-t border-edge">
           <div className="flex items-center gap-2 pl-4">
             <h1
-              className="-translate-y-px py-1.5 text-2xl leading-snug font-black text-gradient-brand sm:text-4xl"
+              className="flex -translate-y-px py-1.5 text-xl leading-snug font-black min-[23.4rem]:text-2xl sm:text-4xl"
               aria-label={USER.displayName}
             >
-              <HoverSwapName
+              <AlternatingName
                 devanagari={USER.displayNameDevanagari}
                 english={USER.displayName}
-                isTappable
               />
             </h1>
 

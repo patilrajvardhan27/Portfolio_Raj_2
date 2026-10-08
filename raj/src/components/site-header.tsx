@@ -1,8 +1,8 @@
 import dynamic from "next/dynamic"
 import Link from "next/link"
 
+import { AlternatingName } from "@/components/alternating-name"
 import { DesktopNav } from "@/components/desktop-nav"
-import { HoverSwapName } from "@/components/hover-swap-name"
 import { MusicToggle } from "@/components/music-toggle"
 import { MAIN_NAV } from "@/config/site"
 import { USER } from "@/features/portfolio/data/user"
@@ -30,17 +30,17 @@ export function SiteHeader() {
         data-header-container
       >
         <Link
-          className="py-2 text-lg leading-snug font-black text-gradient-brand transition-[scale] ease-out active:scale-[0.98] sm:text-xl"
+          className="flex shrink-0 py-2 text-lg leading-snug font-black whitespace-nowrap transition-[scale] max-[22.5rem]:text-base ease-out active:scale-[0.98] sm:text-xl"
           href="/"
           aria-label="Home"
         >
-          <HoverSwapName
-            className="md:hidden"
+          <AlternatingName
+            className="lg:hidden"
             devanagari={USER.shortNameDevanagari}
             english={`${USER.firstName} ${USER.lastName}`}
           />
-          <HoverSwapName
-            className="hidden md:inline"
+          <AlternatingName
+            className="hidden lg:inline-grid lg:text-lg"
             devanagari={USER.displayNameDevanagari}
             english={USER.displayName}
           />

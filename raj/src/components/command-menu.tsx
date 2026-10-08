@@ -122,7 +122,7 @@ export function CommandMenu() {
       >
         <Icons.search aria-hidden />
 
-        <span className="font-sans text-sm/4 font-medium sm:hidden">
+        <span className="font-sans text-sm/4 font-medium max-[22.5rem]:hidden sm:hidden">
           Search…
         </span>
 
