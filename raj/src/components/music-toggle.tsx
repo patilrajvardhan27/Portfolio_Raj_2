@@ -4,7 +4,11 @@ import { PauseIcon, PlayIcon } from "lucide-react"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
 
-import { ENTRY_GATE_ENTER_EVENT } from "@/config/site"
+import {
+  ENTRY_GATE_ENTER_EVENT,
+  MUSIC_STATUS_EVENT,
+  type MusicStatus,
+} from "@/config/site"
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "./base/ui/tooltip"
 import { Button } from "./ui/button"
@@ -12,11 +16,17 @@ import { Kbd } from "./ui/kbd"
 
 const MUSIC_SRC = "/assets/audio/background.mp3"
 /**
- * Events every browser accepts as a user gesture for starting audio. Mobile
- * Safari does not always count the `pointerup` that ends a drag, but it does
- * count the `touchend` that follows it.
+ * Events browsers accept as a user gesture for starting audio. Mobile Safari
+ * only counts a tap, never the end of a drag, so a dragged needle is refused
+ * there and playback is retried on the visitor's next tap.
  */
 const PLAYBACK_GESTURE_EVENTS = ["touchend", "click", "keydown"] as const
+
+const dispatchMusicStatus = (status: MusicStatus) => {
+  window.dispatchEvent(
+    new CustomEvent<MusicStatus>(MUSIC_STATUS_EVENT, { detail: status })
+  )
+}
 
 export const MusicToggle = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null)
@@ -26,6 +36,7 @@ export const MusicToggle = () => {
   const handleUnavailable = useCallback(() => {
     console.log(`[music] ${MUSIC_SRC} could not be loaded, hiding the toggle`)
     setIsAvailable(false)
+    dispatchMusicStatus("unavailable")
   }, [])
 
   const startPlayback = useCallback(() => {
@@ -35,6 +46,7 @@ export const MusicToggle = () => {
     audio.play().catch((error: DOMException) => {
       if (error.name === "NotAllowedError") {
         console.log("[music] browser blocked playback, needs a user gesture")
+        dispatchMusicStatus("blocked")
         return
       }
       handleUnavailable()
@@ -91,7 +103,10 @@ export const MusicToggle = () => {
     audio.pause()
   }, [startPlayback])
 
-  const handlePlay = () => setIsPlaying(true)
+  const handlePlay = () => {
+    setIsPlaying(true)
+    dispatchMusicStatus("playing")
+  }
   const handlePause = () => setIsPlaying(false)
 
   useHotkeys("m", handleToggle)

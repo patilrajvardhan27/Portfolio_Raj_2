@@ -3,11 +3,21 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 
 import { TuneMark } from "@/components/tune-mark"
-import { ENTRY_GATE_ENTER_EVENT } from "@/config/site"
+import {
+  ENTRY_GATE_ENTER_EVENT,
+  MUSIC_STATUS_EVENT,
+  type MusicStatus,
+} from "@/config/site"
 import { USER } from "@/features/portfolio/data/user"
 import { cn } from "@/lib/utils"
 
-type EntryGatePhase = "idle" | "placing" | "revealing" | "done"
+/** `awaitingTap`: the needle is down but the browser still wants a tap before it will play audio. */
+type EntryGatePhase =
+  | "idle"
+  | "placing"
+  | "awaitingTap"
+  | "revealing"
+  | "done"
 
 type TonearmDrag = {
   startX: number
@@ -19,6 +29,8 @@ type TonearmDrag = {
 
 /** Time for the needle to settle on the record before the reveal starts. */
 const NEEDLE_DROP_MS = 900
+/** Opens the site anyway if the music player never reports back. */
+const MUSIC_STATUS_TIMEOUT_MS = 2500
 /** Must match the `entry-reveal` animation duration in globals.css. */
 const REVEAL_MS = 1200
 /** Speeds the idle spin up to roughly 33⅓ RPM once the needle is down. */
@@ -54,6 +66,9 @@ export const EntryGate = () => {
   const dragRef = useRef<TonearmDrag | null>(null)
   const shouldSuppressClickRef = useRef(false)
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([])
+  const needlePlacedAtRef = useRef<number | null>(null)
+  const hasMusicStatusRef = useRef(false)
+  const hasRevealStartedRef = useRef(false)
 
   useEffect(() => {
     const timers = timersRef.current
@@ -69,10 +84,54 @@ export const EntryGate = () => {
     }
   }, [phase])
 
+  // Opens the site once the needle has had time to settle on the record.
+  const startReveal = useCallback(() => {
+    const needlePlacedAt = needlePlacedAtRef.current
+    if (needlePlacedAt === null || hasRevealStartedRef.current) return
+    hasRevealStartedRef.current = true
+
+    const settleDelay = Math.max(
+      0,
+      NEEDLE_DROP_MS - (Date.now() - needlePlacedAt)
+    )
+    timersRef.current.push(
+      setTimeout(() => {
+        console.log("[entry-gate] revealing site")
+        setPhase("revealing")
+      }, settleDelay),
+      setTimeout(() => {
+        console.log("[entry-gate] done")
+        setPhase("done")
+      }, settleDelay + REVEAL_MS)
+    )
+  }, [])
+
+  // The site opens only once the music is really playing. Phones refuse audio
+  // after a drag, so in that case the gate stays up and asks for one tap.
+  useEffect(() => {
+    const handleMusicStatus = (event: Event) => {
+      if (needlePlacedAtRef.current === null) return
+      const status = (event as CustomEvent<MusicStatus>).detail
+      console.log(`[entry-gate] music status: ${status}`)
+      hasMusicStatusRef.current = true
+
+      if (status === "blocked") {
+        setPhase((current) => (current === "placing" ? "awaitingTap" : current))
+        return
+      }
+      startReveal()
+    }
+
+    window.addEventListener(MUSIC_STATUS_EVENT, handleMusicStatus)
+    return () =>
+      window.removeEventListener(MUSIC_STATUS_EVENT, handleMusicStatus)
+  }, [startReveal])
+
   const placeNeedle = useCallback(
     (angle: number) => {
       if (phase !== "idle") return
       console.log(`[entry-gate] needle placed at ${angle.toFixed(1)}deg`)
+      needlePlacedAtRef.current = Date.now()
       window.dispatchEvent(new Event(ENTRY_GATE_ENTER_EVENT))
 
       const overlay = overlayRef.current
@@ -101,16 +160,13 @@ export const EntryGate = () => {
       setPhase("placing")
       timersRef.current.push(
         setTimeout(() => {
-          console.log("[entry-gate] revealing site")
-          setPhase("revealing")
-        }, NEEDLE_DROP_MS),
-        setTimeout(() => {
-          console.log("[entry-gate] done")
-          setPhase("done")
-        }, NEEDLE_DROP_MS + REVEAL_MS)
+          if (hasMusicStatusRef.current) return
+          console.log("[entry-gate] no word from the music player, opening")
+          startReveal()
+        }, MUSIC_STATUS_TIMEOUT_MS)
       )
     },
-    [phase]
+    [phase, startReveal]
   )
 
   /** Angle of the line from the tonearm pivot to the pointer. */
@@ -202,6 +258,7 @@ export const EntryGate = () => {
   if (phase === "done") return null
 
   const isNeedlePlaced = phase !== "idle"
+  const isAwaitingTap = phase === "awaitingTap"
 
   return (
     <div
@@ -280,12 +337,19 @@ export const EntryGate = () => {
 
       <div className="text-center short:text-left" aria-live="polite">
         <p className="text-4xl leading-none font-black tracking-tighter uppercase sm:text-6xl short:text-4xl">
-          {isNeedlePlaced ? "Now playing" : "Drop the needle"}
+          {!isNeedlePlaced && "Drop the needle"}
+          {isAwaitingTap && (
+            <span className="inline-block motion-safe:animate-pulse">
+              Tap to play
+            </span>
+          )}
+          {isNeedlePlaced && !isAwaitingTap && "Now playing"}
         </p>
         <p className="mt-2 text-xs font-bold tracking-wide text-zinc-50/80 uppercase sm:mt-3 sm:text-sm">
-          {isNeedlePlaced
-            ? "Opening the site"
-            : "Drag the tonearm onto the record to start the music and enter"}
+          {!isNeedlePlaced &&
+            "Drag the tonearm onto the record to start the music and enter"}
+          {isAwaitingTap && "Your phone needs one tap to start the music"}
+          {isNeedlePlaced && !isAwaitingTap && "Opening the site"}
         </p>
       </div>
     </div>
