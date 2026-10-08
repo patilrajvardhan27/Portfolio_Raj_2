@@ -4,6 +4,8 @@ export const USER = {
   firstName: "Raj",
   lastName: "Patil",
   displayName: "Rajvardhan (Raj) Patil",
+  displayNameDevanagari: "राजवर्धन (राज) पाटील",
+  shortNameDevanagari: "राज पाटील",
   username: "patilrajvardhan27",
   gender: "male",
   pronouns: "he/him",

@@ -8,7 +8,12 @@ import type { WebSite, WithContext } from "schema-dts"
 import { Providers } from "@/components/providers"
 import { META_THEME_COLORS, SITE_INFO } from "@/config/site"
 import { USER } from "@/features/portfolio/data/user"
-import { fontMono, fontPixelSquare, fontSans } from "@/lib/fonts"
+import {
+  fontDevanagari,
+  fontMono,
+  fontPixelSquare,
+  fontSans,
+} from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 
 function getWebSiteJsonLd(): WithContext<WebSite> {
@@ -108,6 +113,7 @@ export default function RootLayout({
       lang="en"
       className={cn(
         fontSans.variable,
+        fontDevanagari.variable,
         fontMono.variable,
         fontPixelSquare.variable
       )}

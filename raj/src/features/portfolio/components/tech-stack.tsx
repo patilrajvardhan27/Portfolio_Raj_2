@@ -1,5 +1,3 @@
-import Image from "next/image"
-
 import {
   Tooltip,
   TooltipContent,
@@ -19,46 +17,20 @@ export function TechStack() {
       <PanelContent>
         <ul className="flex flex-wrap gap-4 select-none">
           {TECH_STACK.map((tech) => {
-            const base = tech.iconBaseUrl ?? "https://assets.chanhdai.com/images/tech-stack-icons"
+            const TechIcon = tech.icon
             return (
               <li key={tech.key} className="flex">
                 <Tooltip>
                   <TooltipTrigger
                     render={
                       <a
+                        className="text-brand transition-[scale] ease-out hover:scale-110"
                         href={tech.href}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={tech.title}
                       >
-                        {tech.theme ? (
-                          <>
-                            <Image
-                              src={`${base}/${tech.key}-light.svg`}
-                              alt={`${tech.title} light icon`}
-                              width={32}
-                              height={32}
-                              className="hidden [html.light_&]:block"
-                              unoptimized
-                            />
-                            <Image
-                              src={`${base}/${tech.key}-dark.svg`}
-                              alt={`${tech.title} dark icon`}
-                              width={32}
-                              height={32}
-                              className="hidden [html.dark_&]:block"
-                              unoptimized
-                            />
-                          </>
-                        ) : (
-                          <Image
-                            src={`${base}/${tech.key}.svg`}
-                            alt={`${tech.title} icon`}
-                            width={32}
-                            height={32}
-                            unoptimized
-                          />
-                        )}
+                        <TechIcon className="size-7 sm:size-8" />
                       </a>
                     }
                   />

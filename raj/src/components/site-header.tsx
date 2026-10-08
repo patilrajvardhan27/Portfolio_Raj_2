@@ -3,6 +3,7 @@ import Link from "next/link"
 
 import { DesktopNav } from "@/components/desktop-nav"
 import { MAIN_NAV } from "@/config/site"
+import { USER } from "@/features/portfolio/data/user"
 import { cn } from "@/lib/utils"
 
 import { ThemeToggle } from "./theme-toggle"
@@ -27,12 +28,15 @@ export function SiteHeader() {
         data-header-container
       >
         <Link
-          className="text-base font-black tracking-tighter text-gradient-brand uppercase transition-[scale] ease-out active:scale-[0.98] sm:text-lg"
+          className="py-1 font-devanagari text-lg leading-snug font-black text-gradient-brand transition-[scale] ease-out active:scale-[0.98] sm:text-xl"
+          lang="hi"
           href="/"
           aria-label="Home"
         >
-          <span className="md:hidden">Raj Patil</span>
-          <span className="hidden md:inline">Rajvardhan (Raj) Patil</span>
+          <span className="md:hidden">{USER.shortNameDevanagari}</span>
+          <span className="hidden md:inline">
+            {USER.displayNameDevanagari}
+          </span>
         </Link>
 
         <div className="flex-1" />

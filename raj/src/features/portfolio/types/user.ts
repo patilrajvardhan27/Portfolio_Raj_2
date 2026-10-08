@@ -3,6 +3,10 @@ export type User = {
   lastName: string
   /** Preferred public-facing name */
   displayName: string
+  /** Display name written in Devanagari script */
+  displayNameDevanagari: string
+  /** Short form of the Devanagari name for tight spaces */
+  shortNameDevanagari: string
   /** Handle/username used in links or mentions */
   username: string
   gender: "male" | "female" | "non-binary"

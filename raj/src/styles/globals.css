@@ -41,6 +41,7 @@
   --color-selection-foreground: var(--selection-foreground);
 
   --font-sans: var(--font-montserrat);
+  --font-devanagari: var(--font-poppins-devanagari);
   --font-mono: var(--font-geist-mono);
   --font-pixel-square: var(--font-geist-pixel-square);
 

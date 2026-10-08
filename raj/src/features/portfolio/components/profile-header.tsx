@@ -1,6 +1,6 @@
-import { USER } from "@/features/portfolio/data/user"
 import { TextFlip } from "@/components/text-flip"
 import { TuneMark } from "@/components/tune-mark"
+import { USER } from "@/features/portfolio/data/user"
 
 import { GlitchyAvatar } from "./glitchy-avatar"
 // import { PronounceMyName } from "./pronounce-my-name"
@@ -32,8 +32,12 @@ export function ProfileHeader() {
 
         <div className="border-t border-edge">
           <div className="flex items-center gap-2 pl-4">
-            <h1 className="-translate-y-px py-1 text-2xl leading-none font-black tracking-tighter text-gradient-brand uppercase sm:text-3xl">
-              {USER.displayName}
+            <h1
+              className="-translate-y-px py-1.5 font-devanagari text-2xl leading-snug font-black text-gradient-brand sm:text-4xl"
+              lang="hi"
+              aria-label={USER.displayName}
+            >
+              {USER.displayNameDevanagari}
             </h1>
 
             <VerifiedIcon
