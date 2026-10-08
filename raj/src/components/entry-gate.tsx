@@ -224,11 +224,13 @@ export const EntryGate = () => {
       <button
         ref={turntableRef}
         type="button"
-        disabled={isNeedlePlaced}
+        // Not `disabled`: mobile Safari stops delivering touch events to a
+        // disabled button, and the music needs the touchend of this gesture.
+        aria-disabled={isNeedlePlaced}
         aria-label="Drag the needle onto the record to start the music and enter the site"
         onPointerDown={handleTurntablePointerDown}
         onClick={handleTurntableClick}
-        className="relative aspect-5/4 w-70 cursor-pointer rounded-3xl outline-none focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black/40 disabled:cursor-default sm:w-100 short:w-60 short:shrink-0"
+        className="relative aspect-5/4 w-70 cursor-pointer rounded-3xl outline-none focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black/40 aria-disabled:cursor-default sm:w-100 short:w-60 short:shrink-0"
       >
         {/* Record */}
         <span className="absolute top-0 left-0 block aspect-square h-full rounded-full shadow-2xl shadow-black/60">

@@ -11,6 +11,12 @@ import { Button } from "./ui/button"
 import { Kbd } from "./ui/kbd"
 
 const MUSIC_SRC = "/assets/audio/background.mp3"
+/**
+ * Events every browser accepts as a user gesture for starting audio. Mobile
+ * Safari does not always count the `pointerup` that ends a drag, but it does
+ * count the `touchend` that follows it.
+ */
+const PLAYBACK_GESTURE_EVENTS = ["touchend", "click", "keydown"] as const
 
 export const MusicToggle = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null)
@@ -36,16 +42,39 @@ export const MusicToggle = () => {
   }, [handleUnavailable])
 
   // Browsers only allow audible playback after a user gesture, so the music
-  // starts when the visitor drops the needle on the entry gate.
+  // starts when the visitor drops the needle on the entry gate. If the browser
+  // refuses that first attempt, keep retrying on each following gesture until
+  // the track is actually playing.
   useEffect(() => {
+    const removeGestureListeners = () => {
+      PLAYBACK_GESTURE_EVENTS.forEach((eventName) =>
+        document.removeEventListener(eventName, handleGesture, true)
+      )
+    }
+
+    const handleGesture = () => {
+      const audio = audioRef.current
+      if (!audio || !audio.paused) {
+        removeGestureListeners()
+        return
+      }
+      console.log("[music] retrying playback on user gesture")
+      startPlayback()
+    }
+
     const handleEntryGateEnter = () => {
       console.log("[music] entry gate opened, starting playback")
+      PLAYBACK_GESTURE_EVENTS.forEach((eventName) =>
+        document.addEventListener(eventName, handleGesture, true)
+      )
       startPlayback()
     }
 
     window.addEventListener(ENTRY_GATE_ENTER_EVENT, handleEntryGateEnter)
-    return () =>
+    return () => {
       window.removeEventListener(ENTRY_GATE_ENTER_EVENT, handleEntryGateEnter)
+      removeGestureListeners()
+    }
   }, [startPlayback])
 
   const handleToggle = useCallback(() => {
@@ -78,6 +107,7 @@ export const MusicToggle = () => {
         src={MUSIC_SRC}
         loop
         preload="auto"
+        playsInline
         onPlay={handlePlay}
         onPause={handlePause}
         onError={handleUnavailable}
