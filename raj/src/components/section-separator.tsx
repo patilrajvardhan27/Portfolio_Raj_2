@@ -6,30 +6,34 @@ type TuneLayoutItem = {
   className: string
 }
 
-/** Hand-placed scatter patterns, picked by `variant` so no two neighbours look alike. */
+/**
+ * Hand-placed scatter patterns, picked by `variant` so no two neighbours look alike.
+ * Every mark sits in the side gutters, outside the framed column, some drifting
+ * below the strip. They only show once the gutters are wide enough (lg and up).
+ */
 const TUNE_LAYOUTS: TuneLayoutItem[][] = [
   [
-    { name: "music", className: "top-2 left-[9%] -rotate-12" },
-    { name: "lines", className: "top-2.5 left-[63%]" },
-    { name: "music4", className: "top-1.5 left-[88%] rotate-12 max-sm:hidden" },
+    { name: "music", className: "top-2 -left-10 -rotate-12" },
+    { name: "music4", className: "top-14 -left-24 rotate-12" },
+    { name: "lines", className: "top-10 -right-20" },
   ],
   [
-    { name: "music3", className: "top-2.5 left-[27%] rotate-6" },
-    { name: "music", className: "top-1.5 left-[74%] -rotate-6" },
+    { name: "music", className: "top-12 -left-16 -rotate-6" },
+    { name: "music3", className: "top-1.5 -right-12 rotate-6" },
   ],
   [
-    { name: "lines", className: "top-2 left-[6%]" },
-    { name: "music2", className: "top-2.5 left-[46%] rotate-12" },
-    { name: "music", className: "top-2 left-[91%] -rotate-12 max-sm:hidden" },
+    { name: "lines", className: "top-2.5 -left-20" },
+    { name: "music", className: "top-3 -right-24 -rotate-12" },
+    { name: "music2", className: "top-12 -right-10 rotate-12" },
   ],
   [
-    { name: "music4", className: "top-1.5 left-[18%] -rotate-6" },
-    { name: "music3", className: "top-2.5 left-[81%] rotate-12" },
+    { name: "music4", className: "top-10 -left-12 -rotate-6" },
+    { name: "music3", className: "top-2 -right-16 rotate-12" },
   ],
   [
-    { name: "music2", className: "top-2 left-[38%] rotate-6" },
-    { name: "lines", className: "top-2.5 left-[69%] max-sm:hidden" },
-    { name: "music", className: "top-1.5 left-[95%] -rotate-12" },
+    { name: "lines", className: "top-2 -left-10" },
+    { name: "music", className: "top-12 -left-24 -rotate-12" },
+    { name: "music2", className: "top-1.5 -right-20 rotate-6" },
   ],
 ]
 
@@ -59,7 +63,7 @@ export const SectionSeparator = ({
         <TuneMark
           key={`${name}-${tuneClassName}`}
           name={name}
-          className={cn("absolute", tuneClassName)}
+          className={cn("absolute hidden lg:block", tuneClassName)}
         />
       ))}
     </div>

@@ -2,6 +2,8 @@ import dynamic from "next/dynamic"
 import Link from "next/link"
 
 import { DesktopNav } from "@/components/desktop-nav"
+import { HoverSwapName } from "@/components/hover-swap-name"
+import { MusicToggle } from "@/components/music-toggle"
 import { MAIN_NAV } from "@/config/site"
 import { USER } from "@/features/portfolio/data/user"
 import { cn } from "@/lib/utils"
@@ -28,15 +30,20 @@ export function SiteHeader() {
         data-header-container
       >
         <Link
-          className="py-1 font-devanagari text-lg leading-snug font-black text-gradient-brand transition-[scale] ease-out active:scale-[0.98] sm:text-xl"
-          lang="hi"
+          className="py-1 text-lg leading-snug font-black text-gradient-brand transition-[scale] ease-out active:scale-[0.98] sm:text-xl"
           href="/"
           aria-label="Home"
         >
-          <span className="md:hidden">{USER.shortNameDevanagari}</span>
-          <span className="hidden md:inline">
-            {USER.displayNameDevanagari}
-          </span>
+          <HoverSwapName
+            className="md:hidden"
+            devanagari={USER.shortNameDevanagari}
+            english={`${USER.firstName} ${USER.lastName}`}
+          />
+          <HoverSwapName
+            className="hidden md:inline"
+            devanagari={USER.displayNameDevanagari}
+            english={USER.displayName}
+          />
         </Link>
 
         <div className="flex-1" />
@@ -46,6 +53,7 @@ export function SiteHeader() {
         <div className="flex items-center *:first:mr-2">
           <CommandMenu />
           <span className="mx-2 flex h-4 w-px bg-border" />
+          <MusicToggle />
           <ThemeToggle />
           <MobileNav items={MAIN_NAV} />
         </div>

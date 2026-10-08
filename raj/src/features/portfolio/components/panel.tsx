@@ -29,7 +29,15 @@ function PanelHeader({
       {...props}
     >
       {children}
-      <TuneMark name="music2" className="absolute top-2.5 right-4 rotate-12" />
+      {/* Sit far out in the side gutters, clear of the separator marks */}
+      <TuneMark
+        name="music2"
+        className="absolute top-4 -left-40 hidden -rotate-12 xl:block"
+      />
+      <TuneMark
+        name="music"
+        className="absolute -right-44 bottom-0 hidden rotate-12 xl:block"
+      />
     </header>
   )
 }

@@ -1,5 +1,5 @@
+import { HoverSwapName } from "@/components/hover-swap-name"
 import { TextFlip } from "@/components/text-flip"
-import { TuneMark } from "@/components/tune-mark"
 import { USER } from "@/features/portfolio/data/user"
 
 import { GlitchyAvatar } from "./glitchy-avatar"
@@ -23,7 +23,6 @@ export function ProfileHeader() {
 
       <div className="flex flex-1 flex-col">
         <div className="flex grow items-end pb-1 pl-4">
-          <TuneMark name="lines" className="mb-0.5" />
           <div className="line-clamp-1 font-mono text-xs text-zinc-300 select-none max-sm:hidden dark:text-zinc-800">
             <span className="inline dark:hidden"></span>
             <span className="hidden dark:inline"></span>
@@ -33,11 +32,13 @@ export function ProfileHeader() {
         <div className="border-t border-edge">
           <div className="flex items-center gap-2 pl-4">
             <h1
-              className="-translate-y-px py-1.5 font-devanagari text-2xl leading-snug font-black text-gradient-brand sm:text-4xl"
-              lang="hi"
+              className="-translate-y-px py-1.5 text-2xl leading-snug font-black text-gradient-brand sm:text-4xl"
               aria-label={USER.displayName}
             >
-              {USER.displayNameDevanagari}
+              <HoverSwapName
+                devanagari={USER.displayNameDevanagari}
+                english={USER.displayName}
+              />
             </h1>
 
             <VerifiedIcon

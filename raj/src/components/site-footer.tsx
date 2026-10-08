@@ -1,4 +1,3 @@
-import { TuneMark } from "@/components/tune-mark"
 import { cn } from "@/lib/utils"
 
 import { Icons } from "./icons"
@@ -7,8 +6,6 @@ export function SiteFooter() {
   return (
     <footer className="max-w-screen overflow-x-hidden px-2">
       <div className="screen-line-before mx-auto border-x border-edge pt-4 md:max-w-3xl">
-        <TuneMark name="music3" className="mx-auto mb-2 block -rotate-6" />
-
         <p className="mb-1 px-4 text-center font-mono text-sm text-balance text-muted-foreground">
           I don&apos;t know but I will figure it out
         </p>
