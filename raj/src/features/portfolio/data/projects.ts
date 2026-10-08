@@ -2,33 +2,62 @@ import type { Project } from "../types/projects"
 
 export const PROJECTS: Project[] = [
   {
-    id: "topopulse",
-    title: "TopoPulse",
-    skills: [
-      "Python",
-      "Containerlab",
-      "Cisco IOS",
-      "Grafana",
-      "Prometheus",
-      "Netmiko",
-    ],
+    id: "gradmits",
+    title: "Gradmits",
+    period: {
+      start: "2024",
+    },
+    link: "https://www.gradmits.com/",
+    skills: ["Next.js", "FastAPI", "MongoDB", "AWS", "LLMs"],
     description:
-      "Python-based network monitoring and management platform for a Containerlab-emulated Cisco IOS topology, polling device telemetry via SSH/Netmiko and streaming health metrics into a Grafana dashboard for real-time visualization. Automated configuration and validation of Cisco proprietary protocols — VPC, HSRP, GLBP, and CDP — for redundant gateway failover and topology discovery.",
+      "Shortlists US Master's programs from 250K+ real admission decisions, with LLM recommendations, visa interview insights, faculty discovery, and application tracking.",
     isExpanded: true,
   },
   {
-    id: "clearrail",
-    title: "ClearRail",
-    skills: ["Java", "REST", "gRPC", "Kafka", "JDBC", "Docker"],
+    id: "gradbro",
+    title: "GradBro",
+    period: {
+      start: "2024",
+    },
+    link: "https://www.gradbro.com/",
+    skills: ["Next.js", "FastAPI", "AWS CloudFront", "Claude", "OpenAI"],
     description:
-      "Fault-tolerant payment gateway and processor routing verified, encrypted requests across independent Authorization, Clearing, and Settlement microservices behind a load balancer, with async fraud detection. Load-tested for sustained throughput, autoscaling, DoS resilience, and zero dropped transactions on single-service failure.",
+      "Writing copilot for graduate Statements of Purpose used by 1,500+ applicants. A FastAPI backend calls Claude and OpenAI to suggest edits rather than rewrite, so the essay stays in the applicant's voice.",
   },
   {
-    id: "queuewright",
-    title: "QueueWright",
-    skills: ["Python", "Django", "LLM Agents", "PostgreSQL", "Celery"],
+    id: "manter",
+    title: "Manter",
+    period: {
+      start: "2026",
+    },
+    link: "https://github.com/patilrajvardhan27/Manter",
+    skills: [
+      "Next.js",
+      "TypeScript",
+      "FastAPI",
+      "Supabase",
+      "PostgreSQL",
+      "Claude Haiku",
+    ],
     description:
-      "Django workflow platform with an AI quality-review agent that pulls items from a QA queue, executes the QA workflow, runs a quality check, and assigns to a human instead of auto-approving. Reviewer edits are approver-gated and logged as a structured audit trail (client, entries, users).",
+      "Dating PWA that matches on character, not photos. A 14-scenario quiz is scored deterministically across 23 traits and weighted by each user's priorities; realtime chat runs a Claude Haiku red-flag scan through an idempotent endpoint that re-fetches messages server-side instead of trusting the client.",
+  },
+  {
+    id: "pumped-up-kicks",
+    title: "Pumped Up Kicks",
+    link: "https://github.com/patilrajvardhan27/Pumped-Up-Kicks",
+    skills: [
+      "Next.js",
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "Alembic",
+      "Clerk",
+      "Whisper",
+      "Claude",
+    ],
+    description:
+      "Team of 4. Q&A over recorded lectures: Whisper transcribes with timestamps, chunks are embedded in pgvector, and top-k semantic retrieval sends only matching excerpts to Claude; answers stream over SSE and link to the exact moment in the video.",
   },
   {
     id: "saber",
@@ -40,14 +69,16 @@ export const PROJECTS: Project[] = [
     skills: [
       "FastAPI",
       "Python",
+      "pandas",
+      "NumPy",
       "Azure",
-      "LLM/RAG",
+      "RAG",
       "React",
       "TypeScript",
       "Plotly",
     ],
     description:
-      "Full-stack energy audit platform: FastAPI/Python backend on Azure exposing asynchronous REST APIs over a change-point regression engine, with an LLM/RAG pipeline that returns no unsupported answer — every standards citation traces back to a retrieved source passage — plus a React/TypeScript frontend with Plotly visualizations.",
+      "Rewrite of a PyQt5 desktop energy-audit tool into a web app, led with 2 co-developers: a FastAPI backend on Azure runs the change-point regression engine (pandas/NumPy) behind async endpoints so long fits don't block other requests, a RAG pipeline handles standards lookups, and a React/TypeScript frontend plots energy use against weather in Plotly.",
   },
   {
     id: "panel-sizer",
@@ -55,9 +86,19 @@ export const PROJECTS: Project[] = [
     period: {
       start: "2026",
     },
-    skills: ["FastAPI", "Docker", "Azure Container Apps", "RAG"],
+    skills: ["FastAPI", "Docker", "Azure Container Apps", "Terraform", "RAG"],
     description:
-      "Containerized FastAPI NEC Article 220 load calculator deployed on Azure Container Apps with auto-scaling and an integrated RAG assistant, replacing a manual spreadsheet workflow with a repeatable, API-driven microservice.",
+      "NEC Article 220 residential load calculator in FastAPI, Dockerized and deployed on Azure Container Apps with infrastructure as code in Terraform, plus a RAG assistant for NEC code questions.",
+  },
+  {
+    id: "tunbeec-compliance-tool",
+    title: "TUNBEEC Compliance Tool",
+    period: {
+      start: "2026",
+    },
+    skills: ["FastAPI", "Next.js", "Azure App Service", "PyInstaller"],
+    description:
+      "Wrapped the existing Tunisian energy-code engine, unmodified, in a thin FastAPI layer, built a Next.js frontend at parity with the PySide6 desktop app on Azure App Service, and shipped an offline Windows installer (PyInstaller).",
   },
   {
     id: "cak-membership-portal",
@@ -68,16 +109,14 @@ export const PROJECTS: Project[] = [
     link: "https://cak-kolhapur.com/",
     skills: [
       "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
       "FastAPI",
-      "PostgreSQL",
-      "SQLAlchemy",
       "Supabase",
+      "PostgreSQL",
       "Razorpay",
+      "Firebase Auth",
     ],
     description:
-      "Full-stack membership management system for the Computer Association of Kolhapur, featuring multi-step onboarding with GST certificate and photo uploads to Supabase Storage, Razorpay payment integration with automated PDF receipt generation, and a JWT-secured admin dashboard with bulk Excel member import.",
+      "Membership portal that replaced manual signups for 30+ members of the Computer Association of Kolhapur: multi-step onboarding and Razorpay payments, where payment confirmation triggers membership activation and an auto-generated PDF receipt, plus an admin dashboard secured by Firebase-issued JWTs with live membership and revenue stats and a bulk Excel import.",
   },
   {
     id: "buff-bites",
@@ -96,75 +135,12 @@ export const PROJECTS: Project[] = [
       "AI-powered dining companion for CU Boulder that generates personalized, macro-balanced meal combos from daily dining hall menus, with a community feed for sharing and upvoting combos and a trends leaderboard. Reached 50+ users within the first day of launch.",
   },
   {
-    id: "manter",
-    title: "Manter",
-    period: {
-      start: "2026",
-    },
-    link: "https://github.com/patilrajvardhan27/Manter",
-    skills: [
-      "React Native",
-      "Node.js",
-      "PostgreSQL",
-      "Socket.IO",
-      "Claude AI",
-      "AWS S3",
-    ],
+    id: "messit",
+    title: "MessIt",
+    link: "https://play.google.com/store/apps/details?id=com.vinnovateit.messit",
+    skills: ["React", "Node.js", "MongoDB"],
     description:
-      "AI-powered dating app built for women's priorities, featuring a 23-quality character framework where men are evaluated through open-ended scenario questions analyzed by Claude AI, eliminating identity faking. Includes real-time red flag detection on chat messages and compatibility scoring based on women's custom priorities.",
-  },
-  {
-    id: "gradbro",
-    title: "GradBro",
-    period: {
-      start: "2024",
-    },
-    link: "https://www.gradbro.com/",
-    skills: [
-      "Next.js",
-      "React",
-      "LLMs",
-      "AWS CloudFront",
-      "Real-time Analysis",
-    ],
-    description:
-      "AI-powered Statement of Purpose (SOP) editor with ideation, writing assistance, and review features for college application essays. Supports 1500+ users.",
-  },
-  {
-    id: "gradmits",
-    title: "Gradmits",
-    period: {
-      start: "2024",
-    },
-    link: "https://www.gradmits.com/",
-    skills: [
-      "Next.js",
-      "React",
-      "Tailwind CSS",
-      "AWS",
-      "LLMs",
-      "FastAPI",
-      "MongoDB",
-    ],
-    description:
-      "Complete graduate admissions toolkit providing personalized university recommendations, application tracking, and consulting services for US Master's programs.",
-  },
-  {
-    id: "pumped-up-kicks",
-    title: "Pumped Up Kicks",
-    link: "https://github.com/patilrajvardhan27/Pumped-Up-Kicks",
-    skills: [
-      "React",
-      "TypeScript",
-      "FastAPI",
-      "Python",
-      "RAG",
-      "ChromaDB",
-      "Ollama",
-      "Whisper STT",
-    ],
-    description:
-      "AI-powered lecture intelligence platform that converts video lectures into searchable, timestamped transcripts with conversational Q&A and instant navigation to relevant moments.",
+      "Campus mess menu app with 20,000+ users, developed at VinnovateIT with a shared component library and end-to-end tests in the release process.",
   },
   {
     id: "redbro",
@@ -175,14 +151,6 @@ export const PROJECTS: Project[] = [
     skills: ["Python", "PRAW", "PostgreSQL", "Redis", "OpenAI API", "Docker"],
     description:
       "Reddit marketing automation system for AI video SaaS, featuring a high-intent post discovery engine with ML-based intent scoring, multi-account management with rate limiting, and automated engagement workflows.",
-  },
-  {
-    id: "messit",
-    title: "MessIt",
-    link: "https://play.google.com/store/apps/details?id=com.vinnovateit.messit",
-    skills: ["React", "Node.js", "MongoDB", "Redux", "Firebase"],
-    description:
-      "Implemented and refined real-time push notifications for MessIt's menu updates, which directly contributed to a 10% increase in user engagement with daily menu options.",
   },
   {
     id: "sober-space",

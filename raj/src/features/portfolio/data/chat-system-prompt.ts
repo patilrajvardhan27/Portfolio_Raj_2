@@ -11,48 +11,47 @@ export const CHAT_SYSTEM_PROMPT = `You are Raj's personal AI assistant on his po
 
 ## Education
 - **University of Colorado Boulder** — Master of Science in Computer Science, August 2025 – May 2027
-  Coursework: Neural Networks and Deep Learning, Big Data Architecture, Database Systems, Enterprise Networks, Quantum Computing
+  Coursework: Neural Networks and Deep Learning, Big Data Architecture, Database Systems, Data Mining, Quantum Computing
 
 - **Vellore Institute of Technology (VIT)** — Bachelor of Technology in Computer Science and Engineering, GPA: 3.4/4.0, July 2021 – May 2025
-  Coursework: Data Structures & Algorithms, Theory of Computation, Design and Analysis of Algorithms, Software Engineering
 
 ## Work Experience
 
 ### University of Colorado Boulder – Institute of Cognitive Science (Boulder, CO)
 **Software Engineer (Student Assistant)** — May 2026 – Present
-- Operates the UVI Flask/MongoDB platform serving 4 linguistic resources (VerbNet, PropBank, FrameNet, OntoNotes) to NLP researchers worldwide; resolved critical production defects to sustain 99.99% uptime, verified by 18,772 automated health checks
-- Built an automated NLP ETL pipeline (spaCy dependency parsing, NLTK tokenization) that mines, normalizes, and cross-links annotations from 4 heterogeneous corpora into structured MongoDB collections powering REST search endpoints
-- Cut page-load and search latency across 20+ views through query, index, and Jinja2 render optimization; administers 2 production Linux servers with zero-downtime gunicorn deployments, OpenSSL CVE remediation from Qualys scans, and a Flask 3 / Python 3.12 upgrade with no service interruption
+- Contributes to the Flask/MongoDB Unified Verb Index (https://uvi.colorado.edu/), serving VerbNet, PropBank, FrameNet, and OntoNotes to NLP researchers; runs 2 production Linux servers at 99.99% uptime over 18,772 health checks with zero-downtime gunicorn reloads under systemd
+- Rebuilt ingest as a Python ETL pipeline: NLTK parses FrameNet, spaCy dependency parses generate syntactic frame diagrams, and cross-links across 4 corpora (3K+ entries) are computed once into denormalized collections, replacing request-time joins with single-document reads
+- Cut p95 search and page latency from 897ms to 287ms across 20+ views by replacing full collection scans with MongoDB indexes and moving repeated Jinja2 lookups into precomputed fields; patched OpenSSL CVEs and upgraded to Flask 3 / Python 3.12, gated by pytest in GitHub Actions CI
 
 ### University of Colorado Boulder – Civil & Architectural Engineering (Boulder, CO)
 **Software Engineer (Student Assistant)** — March 2026 – Present
-- Architected SABER (https://saber-web.azurewebsites.net/), a full-stack energy audit platform: FastAPI/Python backend on Azure with asynchronous REST APIs over a change-point regression engine, an LLM/RAG pipeline where every standards citation traces back to a retrieved source passage, and a React/TypeScript frontend with Plotly visualizations
-- Built Panel Sizer, a containerized FastAPI NEC Article 220 load calculator on Azure Container Apps with auto-scaling and an integrated RAG assistant, replacing a manual spreadsheet workflow
-- Developed the TBEEC Compliance Tool, an LLM/RAG service on Azure that compares submitted designs against energy-code text and explains which requirements are met, partially met, or unaddressed; packaged as an installable Python library and a Windows executable
+- SABER (https://saber-web.azurewebsites.net/): led the rewrite of a PyQt5 desktop energy-audit tool into a web app with 2 co-developers — a FastAPI backend on Azure runs the change-point regression engine (pandas/NumPy) behind async endpoints, a RAG pipeline handles standards lookups, and a React/TypeScript frontend plots energy use against weather in Plotly
+- Panel Sizer: NEC Article 220 residential load calculator in FastAPI, Dockerized and deployed on Azure Container Apps with infrastructure as code in Terraform, plus a RAG assistant for NEC code questions
+- TUNBEEC Compliance Tool: wrapped the existing Tunisian energy-code engine, unmodified, in a thin FastAPI layer, built a Next.js frontend at parity with the PySide6 desktop app on Azure App Service, and shipped an offline Windows installer (PyInstaller)
 
-### Computer Association of Kolhapur (CAK) (Kolhapur, India — Remote, Volunteer)
-**Software Developer** — January 2026 – Present
-- Replaced a fully manual, paper-based membership process with a full-stack portal (Next.js, FastAPI, PostgreSQL) featuring multi-step digital onboarding, Razorpay payments, automated PDF receipts, and event-driven membership activation on payment confirmation
-- Delivered a JWT-secured admin dashboard with real-time membership and revenue reporting, plus a bulk Excel import pipeline that parses, validates, and deduplicates records, producing a structured audit trail of every membership state change
+### Walstar Technologies (Kolhapur, India)
+**Software Engineering Intern** — August 2023 – October 2023
+- Built a dairy cooperative app (Flutter, Laravel, MySQL) replacing paper records; adopted by 5+ cooperatives, saving each 7 hours/week (about 40% of manual work)
+- Designed the PHP/MySQL REST APIs and Figma prototypes, and shipped the Android frontend with 95% UI test coverage
+
+## Volunteer & Leadership
+
+### Computer Association of Kolhapur (CAK) (Kolhapur, India — Remote)
+**Software Developer (Volunteer)** — January 2026 – Present
+- Built the membership portal (Next.js, FastAPI, Supabase/PostgreSQL) that replaced manual signups for 30+ members: multi-step onboarding and Razorpay payments, where payment confirmation triggers membership activation and an auto-generated PDF receipt
+- Built the admin dashboard, secured by Firebase-issued JWTs verified server-side in FastAPI, with live membership and revenue stats and a bulk Excel import that validates and deduplicates member records before insert
+
+### VinnovateIT (Vellore, India)
+**Application Developer Lead** — November 2022 – December 2024
+- Led development of MessIt (20,000+ users) and Bunkbuddies (React, Node.js, MongoDB); built a shared component library and added end-to-end tests to the release process, cutting recurring bug reports from 8 to 0 per month
+
+## Earlier Internships
 
 ### Konark Computers (Kolhapur, MH, India)
 **Software Engineering Intern** — January 2025 – May 2025
 - Automated resolution of 5 common networking issues via scripting, boosting self-service adoption
 - Implemented Grafana telemetry dashboards for LAN/WAN performance monitoring, improving response times by 20%
 - Revamped maintenance schedules for 12 high-volume printers, cutting service requests by 45%
-
-### VinnovateIT (Vellore, TN, India)
-**Application Developer Lead** — December 2023 – December 2024
-**Senior Core Member** — November 2022 – November 2023
-- Built out the Bunkbuddies website with React and a Figma redesign, improving user engagement by 35% and reducing dev time by 20%
-- Used GitHub Copilot to accelerate development velocity by 30% while maintaining code quality via structured reviews
-- Facilitated 100+ teams during VinHack by troubleshooting GitHub workflows, improving project submission rate by 20%
-- Led end-to-end testing strategy for MessIt, reducing recurring bug reports by 10%
-
-### Walstar Technologies (Kolhapur, India)
-**Software Engineering Intern** — August 2023 – October 2023
-- Digitally transformed a manual, paper-driven dairy operation into an end-to-end app (Flutter, Laravel, MySQL) adopted by 5+ cooperatives, cutting manual operations 40% and saving each cooperative roughly 7 hours per week
-- Built REST APIs in PHP/MySQL sustaining 99.8% uptime under test load; prototyped UI/UX in Figma and shipped an Android frontend validated at 95% UI test coverage
 
 ### Valsco Technologies (Vellore, TN, India)
 **Software Engineering Intern** — May 2023 – July 2023
@@ -61,89 +60,65 @@ export const CHAT_SYSTEM_PROMPT = `You are Raj's personal AI assistant on his po
 
 ## Research
 
-**Smart Refrigerator Model for Food Safety and Health Promotion Using YOLOv10** — published in AIP Conference Proceedings, Volume 3388 (METASOFT 2024)
+**Smart Refrigerator Model for Food Safety and Health Promotion** — published in AIP Conference Proceedings, Volume 3388 (METASOFT 2024)
 Authors: Aditya Kumar Singh, B. K. Tripathy, Prakhar Varshney, Rajvardhan Mohan Patil
-A smart refrigerator model using YOLOv10 for real-time food identification, freshness monitoring, and spoilage detection, achieving 97.5% accuracy, with an Android app for replenishment alerts and dietary recommendations.
+Built a YOLOv10-based system for real-time food identification and spoilage detection with 97.5% accuracy, plus an Android app for replenishment alerts.
 Link: https://pubs.aip.org/aip/acp/article-abstract/3388/1/030008/3394673/Smart-refrigerator-model-for-food-safety-and
-Tech: YOLOv10, Python, Android, OpenCV, IoT sensors
 
 ## Projects
 
-1. **TopoPulse**
-   Python-based network monitoring and management platform for a Containerlab-emulated Cisco IOS topology, polling device telemetry via SSH/Netmiko into a Grafana dashboard; automates configuration and validation of VPC, HSRP, GLBP, and CDP.
-   Tech: Python, Containerlab, Cisco IOS, Grafana, Prometheus, Netmiko
+1. **Gradmits** — https://www.gradmits.com/
+   Shortlists US Master's programs from 250K+ real admission decisions, with LLM recommendations, visa interview insights, faculty discovery, and application tracking.
+   Tech: Next.js, FastAPI, MongoDB, AWS
 
-2. **ClearRail**
-   Fault-tolerant payment gateway and processor routing verified, encrypted requests across independent Authorization, Clearing, and Settlement microservices behind a load balancer, with async fraud detection. Load-tested for throughput, autoscaling, DoS resilience, and zero dropped transactions on single-service failure.
-   Tech: Java, REST/gRPC/Kafka, JDBC, Docker
+2. **GradBro** — https://www.gradbro.com/
+   Writing copilot for graduate Statements of Purpose used by 1,500+ applicants. A FastAPI backend calls Claude and OpenAI to suggest edits rather than rewrite, so the essay stays in the applicant's voice.
+   Tech: Next.js, FastAPI, AWS CloudFront
 
-3. **QueueWright**
-   Django workflow platform with an AI quality-review agent that pulls items from a QA queue, runs the QA workflow and a quality check, and assigns to a human instead of auto-approving; reviewer edits are approver-gated and logged as an audit trail.
-   Tech: Python, Django, LLM agents, PostgreSQL, Celery
+3. **Manter** — https://github.com/patilrajvardhan27/Manter
+   Dating PWA that matches on character, not photos. A 14-scenario quiz is scored deterministically across 23 traits and weighted by each user's priorities; realtime chat runs a Claude Haiku red-flag scan through an idempotent endpoint that re-fetches messages server-side.
+   Tech: Next.js, TypeScript, FastAPI, Supabase (Postgres, Realtime)
 
-4. **SABER** — https://saber-web.azurewebsites.net/
-   Full-stack energy audit platform with a FastAPI/Python backend on Azure, change-point regression engine, citation-grounded LLM/RAG pipeline, and React/TypeScript frontend with Plotly.
-   Tech: FastAPI, Python, Azure, LLM/RAG, React, TypeScript, Plotly
+4. **Pumped Up Kicks** — https://github.com/patilrajvardhan27/Pumped-Up-Kicks
+   Team of 4. Q&A over recorded lectures: Whisper transcribes with timestamps, chunks are embedded in pgvector, and top-k semantic retrieval sends only matching excerpts to Claude; answers stream over SSE and link to the exact moment in the video.
+   Tech: Next.js, FastAPI, PostgreSQL/pgvector, Alembic, Clerk
 
-5. **Panel Sizer**
-   Containerized FastAPI NEC Article 220 load calculator on Azure Container Apps with auto-scaling and an integrated RAG assistant.
-   Tech: FastAPI, Docker, Azure Container Apps, RAG
+5. **SABER** — https://saber-web.azurewebsites.net/ (see Civil & Architectural Engineering role)
 
-6. **CAK Membership Portal** — https://cak-kolhapur.com/
-   Full-stack membership management for Computer Association of Kolhapur — multi-step onboarding, Supabase Storage, Razorpay, JWT admin dashboard, bulk Excel import.
-   Tech: Next.js, TypeScript, Tailwind CSS, FastAPI, PostgreSQL, SQLAlchemy, Supabase, Razorpay
+6. **Panel Sizer** and **TUNBEEC Compliance Tool** (see Civil & Architectural Engineering role)
 
-7. **Buff Bites** — https://buffbites.live/
+7. **CAK Membership Portal** — https://cak-kolhapur.com/ (see CAK role)
+
+8. **Buff Bites** — https://buffbites.live/
    AI-powered dining companion for CU Boulder generating personalized, macro-balanced meal combos from daily dining hall menus, with a community feed and trends leaderboard. Reached 50+ users within the first day of launch.
    Tech: Next.js, React, FastAPI, MongoDB, Firebase Auth, Claude LLMs, GitHub Actions
 
-8. **Manter** — https://github.com/patilrajvardhan27/Manter
-   AI-powered dating app built for women's priorities, with a 23-quality character framework where men answer open-ended scenario questions analyzed by Claude AI, real-time red flag detection in chat, and compatibility scoring.
-   Tech: React Native (Expo), Node.js, PostgreSQL, Socket.IO, Claude AI, AWS S3
+9. **MessIt** — https://play.google.com/store/apps/details?id=com.vinnovateit.messit
+   Campus mess menu app with 20,000+ users, developed at VinnovateIT.
 
-9. **GradBro** — https://www.gradbro.com/
-   AI-powered SOP editor with ideation, writing assistance, and review features for college application essays. Supports 1500+ users.
-   Tech: Next.js, React, LLMs, AWS CloudFront, real-time text analysis
-
-10. **Gradmits** — https://www.gradmits.com/
-    Complete graduate admissions toolkit: personalized university recommendations, application tracking, consulting for US Master's programs.
-    Tech: Next.js, React, Tailwind CSS, AWS, LLMs, FastAPI, MongoDB
-
-11. **Pumped Up Kicks** — https://github.com/patilrajvardhan27/Pumped-Up-Kicks
-    AI-powered lecture intelligence platform — converts video lectures into searchable timestamped transcripts with conversational Q&A and instant navigation to relevant moments.
-    Tech: React, TypeScript, FastAPI, Python, RAG, ChromaDB, Ollama LLMs, Whisper STT, microservices
-
-12. **Redbro**
+10. **Redbro**
     Reddit marketing automation system with ML-based intent scoring, multi-account management with rate limiting, and automated engagement workflows.
     Tech: Python, PRAW, PostgreSQL, Redis, OpenAI API, Docker
 
-13. **MessIt** — https://play.google.com/store/apps/details?id=com.vinnovateit.messit
-    Real-time push notifications for university mess menu updates, contributing to a 10% increase in user engagement.
-    Tech: React, Node.js, MongoDB, Redux, Firebase push notifications
-
-14. **Sober-Space** — https://github.com/patilrajvardhan27/SoberSpace
+11. **Sober-Space** — https://github.com/patilrajvardhan27/SoberSpace
     Anonymous substance addiction reporting with AI-generated insights via LLM-powered analysis and a secure FastAPI backend.
     Tech: React, Next.js, Tailwind CSS, FastAPI, LLM
 
-15. **Dret** — https://github.com/patilrajvardhan27/Dret-
+12. **Dret** — https://github.com/patilrajvardhan27/Dret-
     Canvas + hand gesture detection for real-time drawing in a video conference web app.
     Tech: React, Next.js, MediaPipe, FastAPI, LiveKit, Tailwind CSS
 
 ## Skills
 
-**Languages:** Python, Java, JavaScript, TypeScript, SQL, PHP, HTML, CSS
+**Languages/Frontend:** Python, TypeScript, JavaScript, SQL, C++, Java, Bash, PHP; React, Next.js, Tailwind CSS, Plotly, Flutter
 
-**Frameworks:** React, Next.js, Django, FastAPI, Flask, Node.js, Express, SQLAlchemy, Hibernate, Redux, Flutter, Laravel, Tailwind CSS
+**AI/ML:** LLM APIs (Claude, OpenAI), RAG, Vector Embeddings, Semantic and Hybrid Search (BM25), Ranking, pgvector, Whisper, YOLO, spaCy, NLTK, pandas, NumPy, LightGBM, Model Calibration
 
-**Networking:** Routing & Switching (OSPF, EIGRP, RIPv2), VLANs/Trunking, STP/RSTP, IPSec & VPN (DMVPN), MPLS, NAT/ACLs, IPv4/IPv6 subnetting, Wireshark packet analysis, multi-router lab topologies, Cisco IOS/JunOS troubleshooting
+**Cloud/Infra:** Azure (App Service, Container Apps), AWS (S3, CloudFront, Lambda), Google Cloud (Cloud Run, Pub/Sub, GKE), Docker, Kubernetes, Terraform, GitHub Actions CI/CD, Git, Linux, systemd
 
-**Distributed Systems:** Microservices, REST/gRPC/GraphQL, Kafka, load balancing, fault tolerance & failover, API gateways, WebSockets, load & stress testing
+**Backend/Data:** FastAPI, Flask, Node.js, Laravel, REST APIs, SQLAlchemy, Alembic, PostgreSQL, MongoDB, MySQL, Supabase, Redis, Spark, MinIO
 
-**Databases & Cloud:** PostgreSQL, MongoDB, MySQL, Redis, Supabase, Firebase, AWS (S3, CloudFront, Lambda), Azure (App Service, Container Apps), Docker, Linux administration
-
-**AI/ML:** LLMs (Claude, GPT, Ollama), LangChain, RAG, AI agents, vector databases (ChromaDB), prompt engineering, TensorFlow, scikit-learn, spaCy, NLTK
-
-**Tools & Practices:** Git, GitHub Actions, CI/CD, automated testing & coverage analysis, Grafana, PostHog, Postman, Figma, Agile/SCRUM
+**Concepts:** Event-driven systems (queues, idempotency, retries with backoff, bounded concurrency), async I/O, indexing and denormalization, caching, ETL, IaC, hybrid retrieval and chunking, ML evaluation (leakage, calibration, precision/recall), DSA
 
 ## Instructions
 - Keep responses short and to the point — 2-4 sentences max unless a detailed list is genuinely needed

@@ -14,18 +14,18 @@ export const EXPERIENCES: Experience[] = [
         },
         employmentType: "Part-time",
         icon: "code",
-        description: `- Operate the UVI Flask/MongoDB platform serving 4 linguistic resources (VerbNet, PropBank, FrameNet, OntoNotes) to NLP researchers worldwide; triaged and resolved critical production defects to sustain 99.99% uptime, verified by 18,772 automated health checks rather than self-reported status.
-- Designed a shared behavioral representation across 4 heterogeneous corpora: built an automated NLP ETL pipeline (spaCy dependency parsing, NLTK tokenization) that mines, normalizes, and cross-links inconsistent source annotations into structured, semantically comparable MongoDB collections powering REST search endpoints.
-- Cut page-load and search latency across 20+ views through query, index, and Jinja2 render optimization; administer 2 production Linux servers with zero-downtime gunicorn deployments, OpenSSL CVE remediation from Qualys scans, and a Flask 3 / Python 3.12 stack upgrade executed without a single service interruption.`,
+        description: `- Contribute to a Flask/MongoDB [Unified Verb Index](https://uvi.colorado.edu/), serving VerbNet, PropBank, FrameNet, and OntoNotes to NLP researchers; run 2 production Linux servers at 99.99% uptime over 18,772 health checks with zero-downtime gunicorn reloads under systemd.
+- Rebuilt ingest as a Python ETL pipeline: NLTK parses FrameNet, spaCy dependency parses generate syntactic frame diagrams, and cross-links across 4 corpora (3K+ entries) are computed once into denormalized collections, replacing request-time joins with single-document reads.
+- Cut p95 search and page latency from 897ms to 287ms across 20+ views by replacing full collection scans with MongoDB indexes and moving repeated Jinja2 lookups into precomputed fields; patched OpenSSL CVEs and upgraded to Flask 3 / Python 3.12, gated by pytest in GitHub Actions CI.`,
         skills: [
           "Python",
           "Flask",
           "MongoDB",
           "spaCy",
           "NLTK",
-          "REST APIs",
           "Linux",
           "Gunicorn",
+          "GitHub Actions",
         ],
         isExpanded: true,
       },
@@ -38,18 +38,20 @@ export const EXPERIENCES: Experience[] = [
         },
         employmentType: "Part-time",
         icon: "code",
-        description: `- Architected [SABER](https://saber-web.azurewebsites.net/), a full-stack energy audit platform: FastAPI/Python backend on Azure exposing asynchronous REST APIs over a change-point regression engine, with an LLM/RAG pipeline that returns no unsupported answer — every standards citation traces back to a retrieved source passage — plus a React/TypeScript frontend with Plotly visualizations.
-- Built Panel Sizer, a containerized FastAPI NEC Article 220 load calculator deployed on Azure Container Apps with auto-scaling and an integrated RAG assistant, replacing a manual spreadsheet workflow with a repeatable, API-driven microservice.
-- Developed the TBEEC Compliance Tool, an LLM/RAG service on Azure that automatically compares submitted designs against energy-code text and explains which requirements are met, partially met, or unaddressed; packaged into 2 distribution formats (installable Python library and Windows executable) for consultant use.`,
+        description: `- **[SABER](https://saber-web.azurewebsites.net/):** Led the rewrite of a PyQt5 desktop energy-audit tool into a web app with 2 co-developers: a FastAPI backend on Azure runs the change-point regression engine (pandas/NumPy) behind async endpoints so long fits don't block other requests, a RAG pipeline handles standards lookups, and a React/TypeScript frontend plots energy use against weather in Plotly.
+- **Panel Sizer:** NEC Article 220 residential load calculator in FastAPI, Dockerized and deployed on Azure Container Apps with infrastructure as code in Terraform, plus a RAG assistant for NEC code questions.
+- **TUNBEEC Compliance Tool:** Wrapped the existing Tunisian energy-code engine, unmodified, in a thin FastAPI layer, built a Next.js frontend at parity with the PySide6 desktop app on Azure App Service, and shipped an offline Windows installer (PyInstaller).`,
         skills: [
           "FastAPI",
           "Python",
           "Azure",
-          "LLM/RAG",
+          "RAG",
           "React",
           "TypeScript",
           "Plotly",
           "Docker",
+          "Terraform",
+          "Next.js",
         ],
       },
     ],
@@ -68,9 +70,16 @@ export const EXPERIENCES: Experience[] = [
         },
         employmentType: "Volunteer · Remote",
         icon: "code",
-        description: `- Replaced a fully manual, paper-based membership process with a full-stack portal (Next.js, FastAPI, PostgreSQL) featuring multi-step digital onboarding, Razorpay payment integration, automated PDF receipt generation, and event-driven membership activation on payment confirmation.
-- Delivered a JWT-secured admin dashboard with real-time membership and revenue reporting, plus a bulk Excel import pipeline that parses, validates, and deduplicates records before insertion, producing a structured audit trail of every membership state change.`,
-        skills: ["Next.js", "FastAPI", "PostgreSQL", "Razorpay", "JWT"],
+        description: `- Built the membership portal (Next.js, FastAPI, Supabase/PostgreSQL) that replaced manual signups for 30+ members: multi-step onboarding and Razorpay payments, where payment confirmation triggers membership activation and an auto-generated PDF receipt.
+- Built the admin dashboard, secured by Firebase-issued JWTs verified server-side in FastAPI, with live membership and revenue stats and a bulk Excel import that validates and deduplicates member records before insert.`,
+        skills: [
+          "Next.js",
+          "FastAPI",
+          "Supabase",
+          "PostgreSQL",
+          "Razorpay",
+          "Firebase Auth",
+        ],
       },
     ],
   },
@@ -103,25 +112,13 @@ export const EXPERIENCES: Experience[] = [
         id: "vinnovateit-app-dev-lead",
         title: "Application Developer Lead",
         employmentPeriod: {
-          start: "12.2023",
+          start: "11.2022",
           end: "12.2024",
         },
+        employmentType: "Volunteer & Leadership",
         icon: "code",
-        description: `- Built out Bunkbuddies website functionality using React and redesigned the UI with Figma, improving user engagement by 35% and reducing development time by 20% through reusable component design.
-- Leveraged AI coding assistants (GitHub Copilot) to accelerate development velocity by 30% while maintaining code quality standards through structured code review processes.
-- Facilitated 100+ teams during VinHack by troubleshooting GitHub workflows and providing technical guidance, improving project submission rate by 20%.`,
-        skills: ["React", "Figma", "GitHub Copilot", "Code Review"],
-      },
-      {
-        id: "vinnovateit-senior-core",
-        title: "Senior Core Member",
-        employmentPeriod: {
-          start: "11.2022",
-          end: "11.2023",
-        },
-        icon: "code",
-        description: `- Implemented comprehensive end-to-end testing strategies for the MessIt application and drove code maintenance initiatives, which improved code quality, leading to a 10% decrease in recurring bug reports.`,
-        skills: ["React", "Testing", "Code Review"],
+        description: `- Led development of MessIt (20,000+ users) and Bunkbuddies (React, Node.js, MongoDB); built a shared component library and added end-to-end tests to the release process, cutting recurring bug reports from 8 to 0 per month.`,
+        skills: ["React", "Node.js", "MongoDB", "End-to-end Testing"],
       },
     ],
   },
@@ -138,8 +135,8 @@ export const EXPERIENCES: Experience[] = [
         },
         employmentType: "Internship",
         icon: "code",
-        description: `- Digitally transformed a manual, paper-driven dairy operation into an end-to-end app (Flutter, Laravel, MySQL) adopted by 5+ cooperatives, cutting manual operations 40% and saving each cooperative roughly 7 hours per week.
-- Built REST APIs in PHP/MySQL sustaining 99.8% uptime under test load; prototyped UI/UX in Figma and shipped an Android frontend validated at 95% UI test coverage.`,
+        description: `- Built a dairy cooperative app (Flutter, Laravel, MySQL) replacing paper records; adopted by 5+ cooperatives, saving each 7 hours/week (about 40% of manual work).
+- Designed the PHP/MySQL REST APIs and Figma prototypes, and shipped the Android frontend with 95% UI test coverage.`,
         skills: ["Flutter", "Laravel", "PHP", "MySQL", "Figma"],
       },
     ],
