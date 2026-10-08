@@ -9,6 +9,9 @@ export const SITE_INFO = {
   keywords: USER.keywords,
 }
 
+/** Fired on `window` when the visitor drops the needle on the entry gate. */
+export const ENTRY_GATE_ENTER_EVENT = "entry-gate:enter"
+
 export const META_THEME_COLORS = {
   light: "#ffffff",
   dark: "#09090b",

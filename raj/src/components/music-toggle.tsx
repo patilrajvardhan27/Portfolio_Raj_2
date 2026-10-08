@@ -4,33 +4,16 @@ import { PauseIcon, PlayIcon } from "lucide-react"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
 
+import { ENTRY_GATE_ENTER_EVENT } from "@/config/site"
+
 import { Tooltip, TooltipContent, TooltipTrigger } from "./base/ui/tooltip"
 import { Button } from "./ui/button"
 import { Kbd } from "./ui/kbd"
 
 const MUSIC_SRC = "/assets/audio/background.mp3"
-const MUSIC_PAUSED_STORAGE_KEY = "background-music-paused"
-const UNLOCK_EVENTS = ["pointerdown", "touchend", "click", "keydown"] as const
-
-const readIsPausedPreference = (): boolean => {
-  try {
-    return localStorage.getItem(MUSIC_PAUSED_STORAGE_KEY) === "true"
-  } catch {
-    return false
-  }
-}
-
-const saveIsPausedPreference = (isPaused: boolean) => {
-  try {
-    localStorage.setItem(MUSIC_PAUSED_STORAGE_KEY, String(isPaused))
-  } catch {
-    console.log("[music] could not persist the paused preference")
-  }
-}
 
 export const MusicToggle = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null)
-  const buttonRef = useRef<HTMLButtonElement | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isAvailable, setIsAvailable] = useState(true)
 
@@ -39,43 +22,31 @@ export const MusicToggle = () => {
     setIsAvailable(false)
   }, [])
 
-  // Browsers block audible autoplay, so start on load when allowed and
-  // otherwise on the visitor's first interaction with the page.
-  useEffect(() => {
+  const startPlayback = useCallback(() => {
     const audio = audioRef.current
     if (!audio) return
-    if (readIsPausedPreference()) {
-      console.log("[music] visitor paused music earlier, staying silent")
-      return
-    }
-
-    const removeUnlockListeners = () => {
-      UNLOCK_EVENTS.forEach((eventName) =>
-        document.removeEventListener(eventName, handleFirstInteraction)
-      )
-    }
-
-    const handleFirstInteraction = (event: Event) => {
-      // The toggle handles its own clicks; starting here too would cancel out.
-      if (buttonRef.current?.contains(event.target as Node)) return
-      removeUnlockListeners()
-      console.log("[music] first interaction, starting playback")
-      audio.play().catch(handleUnavailable)
-    }
 
     audio.play().catch((error: DOMException) => {
-      if (error.name !== "NotAllowedError") {
-        handleUnavailable()
+      if (error.name === "NotAllowedError") {
+        console.log("[music] browser blocked playback, needs a user gesture")
         return
       }
-      console.log("[music] autoplay blocked, waiting for first interaction")
-      UNLOCK_EVENTS.forEach((eventName) =>
-        document.addEventListener(eventName, handleFirstInteraction)
-      )
+      handleUnavailable()
     })
-
-    return removeUnlockListeners
   }, [handleUnavailable])
+
+  // Browsers only allow audible playback after a user gesture, so the music
+  // starts when the visitor drops the needle on the entry gate.
+  useEffect(() => {
+    const handleEntryGateEnter = () => {
+      console.log("[music] entry gate opened, starting playback")
+      startPlayback()
+    }
+
+    window.addEventListener(ENTRY_GATE_ENTER_EVENT, handleEntryGateEnter)
+    return () =>
+      window.removeEventListener(ENTRY_GATE_ENTER_EVENT, handleEntryGateEnter)
+  }, [startPlayback])
 
   const handleToggle = useCallback(() => {
     const audio = audioRef.current
@@ -83,15 +54,13 @@ export const MusicToggle = () => {
 
     if (audio.paused) {
       console.log("[music] play")
-      saveIsPausedPreference(false)
-      audio.play().catch(handleUnavailable)
+      startPlayback()
       return
     }
 
     console.log("[music] pause")
-    saveIsPausedPreference(true)
     audio.pause()
-  }, [handleUnavailable])
+  }, [startPlayback])
 
   const handlePlay = () => setIsPlaying(true)
   const handlePause = () => setIsPlaying(false)
@@ -117,7 +86,6 @@ export const MusicToggle = () => {
         <TooltipTrigger
           render={
             <Button
-              ref={buttonRef}
               variant="ghost"
               size="icon"
               aria-label={label}

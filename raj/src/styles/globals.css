@@ -51,6 +51,19 @@
   --animate-glitch-flash: glitch-flash 900ms steps(1, end);
 }
 
+/* Radius of the circular hole that opens the entry gate onto the site. */
+@property --entry-reveal-radius {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@keyframes entry-reveal {
+  to {
+    --entry-reveal-radius: var(--entry-reveal-max, 150vmax);
+  }
+}
+
 @keyframes starfield-pan {
   from {
     transform: translateX(0);
@@ -133,6 +146,15 @@
 
 @utility text-gradient-brand {
   @apply bg-linear-to-b from-(--brand-gradient-from) to-(--brand-gradient-to) bg-clip-text text-transparent;
+}
+
+@utility entry-reveal-mask {
+  mask-image: radial-gradient(
+    circle at var(--entry-reveal-x, 50%) var(--entry-reveal-y, 50%),
+    transparent var(--entry-reveal-radius),
+    black calc(var(--entry-reveal-radius) + 2px)
+  );
+  animation: entry-reveal 1200ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
 
 @utility link {
