@@ -32,6 +32,7 @@
   --color-success: var(--success);
   --color-destructive: var(--destructive);
   --color-link: var(--link);
+  --color-brand: var(--brand-red);
   --color-code: var(--code);
   --color-code-foreground: var(--code-foreground);
   --color-code-number: var(--code-number);
@@ -39,7 +40,7 @@
   --color-selection: var(--selection);
   --color-selection-foreground: var(--selection-foreground);
 
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-montserrat);
   --font-mono: var(--font-geist-mono);
   --font-pixel-square: var(--font-geist-pixel-square);
 
@@ -129,6 +130,10 @@
   }
 }
 
+@utility text-gradient-brand {
+  @apply bg-linear-to-b from-(--brand-gradient-from) to-(--brand-gradient-to) bg-clip-text text-transparent;
+}
+
 @utility link {
   @apply font-medium underline underline-offset-4;
 }
@@ -152,6 +157,11 @@
 :root {
   /* red sampled from the reference artwork */
   --brand-red: #ac0b10;
+  --brand-red-deep: #620203;
+
+  /* top-to-bottom fade used on display type */
+  --brand-gradient-from: var(--brand-red);
+  --brand-gradient-to: var(--brand-red-deep);
 
   /* white */
   --background: oklch(1 0 0);
@@ -237,6 +247,10 @@
 }
 
 .dark {
+  /* lifted so the fade stays readable on the dark background */
+  --brand-gradient-from: #e3262d;
+  --brand-gradient-to: var(--brand-red);
+
   /* zinc-950 */
   --background: oklch(0.141 0.005 285.823);
 
@@ -338,7 +352,7 @@
   } */
 
   body {
-    @apply bg-background font-sans text-foreground antialiased;
+    @apply bg-background font-sans font-medium text-foreground antialiased;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
   }

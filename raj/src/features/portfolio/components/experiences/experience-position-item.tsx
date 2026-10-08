@@ -50,7 +50,7 @@ export function ExperiencePositionItem({
               <ExperienceIcon className="size-4" icon={position.icon} />
             </div>
 
-            <h4 className="flex-1 font-medium text-balance">
+            <h4 className="flex-1 font-bold text-balance">
               {position.title}
             </h4>
 

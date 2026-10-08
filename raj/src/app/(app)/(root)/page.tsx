@@ -1,5 +1,6 @@
 import type { ProfilePage as PageSchema, WithContext } from "schema-dts"
 
+import { SectionSeparator } from "@/components/section-separator"
 import { About } from "@/features/portfolio/components/about"
 import { Overview } from "@/features/portfolio/components/overview"
 import { ProfileCover } from "@/features/portfolio/components/profile-cover"
@@ -30,19 +31,19 @@ export default function Page() {
           />
         </div>
         <ProfileCover />
-        <Separator />
+        <SectionSeparator variant={0} />
         <ProfileHeader />
-        <Separator />
+        <SectionSeparator variant={1} />
 
         <Overview />
         <SocialLinks />
-        <Separator />
+        <SectionSeparator variant={2} />
 
         <About />
-        <Separator />
+        <SectionSeparator variant={3} />
 
         <TechStack />
-        <Separator />
+        <SectionSeparator variant={4} />
       </div>
     </>
   )
@@ -61,18 +62,4 @@ function getPageJsonLd(): WithContext<PageSchema> {
       image: USER.avatar,
     },
   }
-}
-
-function Separator({ className }: { className?: string }) {
-  return (
-    <div
-      className={cn(
-        "relative flex h-8 w-full border-x border-edge",
-        "after:absolute after:top-0 after:-left-[100vw] after:-z-1 after:h-px after:w-[200vw] after:bg-edge",
-        "before:absolute before:-left-[100vw] before:-z-1 before:h-8 before:w-[200vw]",
-        "before:bg-[repeating-linear-gradient(315deg,var(--pattern-foreground)_0,var(--pattern-foreground)_1px,transparent_0,transparent_50%)] before:bg-size-[10px_10px] before:[--pattern-foreground:var(--color-edge)]/56",
-        className
-      )}
-    />
-  )
 }

@@ -26,7 +26,7 @@ export function NotFound({ className }: { className?: string }) {
         />
       </svg>
 
-      <h1 className="my-6 text-8xl font-medium tracking-tighter tabular-nums">
+      <h1 className="my-6 text-8xl font-black tracking-tighter text-gradient-brand tabular-nums">
         404
       </h1>
 

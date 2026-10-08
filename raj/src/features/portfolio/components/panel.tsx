@@ -1,6 +1,7 @@
 import { Slot } from "radix-ui"
 import React from "react"
 
+import { TuneMark } from "@/components/tune-mark"
 import { cn } from "@/lib/utils"
 
 function Panel({ className, ...props }: React.ComponentProps<"section">) {
@@ -16,13 +17,20 @@ function Panel({ className, ...props }: React.ComponentProps<"section">) {
   )
 }
 
-function PanelHeader({ className, ...props }: React.ComponentProps<"header">) {
+function PanelHeader({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<"header">) {
   return (
     <header
       data-slot="panel-header"
       className={cn("screen-line-after px-4", className)}
       {...props}
-    />
+    >
+      {children}
+      <TuneMark name="music2" className="absolute top-2.5 right-4 rotate-12" />
+    </header>
   )
 }
 
@@ -36,7 +44,7 @@ function PanelTitle({
   return (
     <Comp
       data-slot="panel-title"
-      className={cn("text-3xl font-semibold tracking-tight", className)}
+      className={cn("py-1 text-3xl leading-none font-black tracking-tighter text-gradient-brand uppercase sm:text-5xl", className)}
       {...props}
     />
   )

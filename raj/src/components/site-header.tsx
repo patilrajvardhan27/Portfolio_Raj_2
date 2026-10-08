@@ -27,11 +27,12 @@ export function SiteHeader() {
         data-header-container
       >
         <Link
-          className="transition-[scale] ease-out active:scale-[0.98] font-semibold text-lg"
+          className="text-base font-black tracking-tighter text-gradient-brand uppercase transition-[scale] ease-out active:scale-[0.98] sm:text-lg"
           href="/"
           aria-label="Home"
         >
-          Rajvardhan (Raj) Patil
+          <span className="md:hidden">Raj Patil</span>
+          <span className="hidden md:inline">Rajvardhan (Raj) Patil</span>
         </Link>
 
         <div className="flex-1" />
