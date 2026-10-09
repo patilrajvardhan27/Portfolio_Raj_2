@@ -58,3 +58,5 @@ pnpm-lock.yaml
 *.ogg
 *.m4a
 .brag-output/
+# brag video output
+brag-output/
