@@ -45,7 +45,7 @@ export const USER = {
   - Campus utility app for my university — [MessIt](https://play.google.com/store/apps/details?id=com.vinnovateit.messit).
 `,
   avatar: "/assets/logo.jpg",
-  ogImage: "/assets/logo.jpg",
+  ogImage: "/assets/og.png",
   namePronunciationUrl: "/assets/my_name.mp3",
   timeZone: "America/Denver",
   keywords: [

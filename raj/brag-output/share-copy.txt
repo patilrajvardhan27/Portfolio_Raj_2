@@ -1,0 +1,5 @@
+My portfolio doesn't have an enter button. It has a tonearm.
+
+Drop the needle, the music starts, the site opens. And if you'd rather not read it, ask it: there's a Claude-powered chat that answers from my actual work.
+
+portfolio-raj-2.vercel.app
