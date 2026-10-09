@@ -8,7 +8,7 @@ export type ChevronsDownUpIconHandle = {
   stopAnimation: () => void
 }
 
-export type ChevronsDownUpIconProps = React.ComponentProps<"svg">
+type ChevronsDownUpIconProps = React.ComponentProps<"svg">
 
 const ChevronsDownUpIcon = forwardRef<
   ChevronsDownUpIconHandle,

@@ -10,7 +10,7 @@ export function ProfileCover() {
       )}
     >
       <img
-        src="/assets/blog/banner_dark.gif"
+        src="/assets/blog/banner_dark.webp"
         alt="Banner"
         className="h-full w-full object-cover"
         fetchPriority="high"

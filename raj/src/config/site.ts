@@ -45,9 +45,6 @@ export const MAIN_NAV: NavItem[] = [
   },
 ]
 
-export const GITHUB_USERNAME = "patilrajvardhan27"
-export const SOURCE_CODE_GITHUB_URL = "https://github.com/patilrajvardhan27/Portfolio_Raj_2"
-
 export const UTM_PARAMS = {
   utm_source: "rajvardhanpatil.com",
 }

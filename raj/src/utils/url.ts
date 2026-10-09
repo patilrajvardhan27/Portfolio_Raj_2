@@ -1,7 +1,3 @@
-export function urlToName(url: string) {
-  return url.replace(/(^\w+:|^)\/\//, "")
-}
-
 export function addQueryParams(
   urlString: string,
   query: Record<string, string>

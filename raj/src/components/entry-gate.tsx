@@ -284,7 +284,7 @@ export const EntryGate = () => {
         // Not `disabled`: mobile Safari stops delivering touch events to a
         // disabled button, and the music needs the touchend of this gesture.
         aria-disabled={isNeedlePlaced}
-        aria-label="Drag the needle onto the record to start the music and enter the site"
+        aria-label="Tap the record, or drag the needle onto it, to start the music and enter the site"
         onPointerDown={handleTurntablePointerDown}
         onClick={handleTurntableClick}
         className="relative aspect-5/4 w-70 cursor-pointer rounded-3xl outline-none focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black/40 aria-disabled:cursor-default sm:w-100 short:w-60 short:shrink-0"
@@ -346,8 +346,17 @@ export const EntryGate = () => {
           {isNeedlePlaced && !isAwaitingTap && "Now playing"}
         </p>
         <p className="mt-2 text-xs font-bold tracking-wide text-zinc-50/80 uppercase sm:mt-3 sm:text-sm">
-          {!isNeedlePlaced &&
-            "Drag the tonearm onto the record to start the music and enter"}
+          {!isNeedlePlaced && (
+            <>
+              {/* Touch screens get the tap wording; dragging still works */}
+              <span className="pointer-fine:hidden">
+                Tap the record to start the music and enter
+              </span>
+              <span className="pointer-coarse:hidden">
+                Drag the tonearm onto the record to start the music and enter
+              </span>
+            </>
+          )}
           {isAwaitingTap && "Your phone needs one tap to start the music"}
           {isNeedlePlaced && !isAwaitingTap && "Opening the site"}
         </p>

@@ -1,3 +1,6 @@
+![visitors](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fabacus.jasoncameron.dev%2Fget%2Fraj-portfolio%2Fvisitors&query=%24.value&label=visitors&color=ac0b10&cacheSeconds=300)
+![music plays](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fabacus.jasoncameron.dev%2Fget%2Fraj-portfolio%2Fmusic-plays&query=%24.value&label=music%20plays&color=ac0b10&cacheSeconds=300)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
